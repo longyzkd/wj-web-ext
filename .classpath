@@ -36,5 +36,6 @@
 	<classpathentry kind="lib" path="E:/wj/apache-tomcat-6.0.41/apache-tomcat-6.0.41/lib/el-api.jar"/>
 	<classpathentry kind="lib" path="E:/wj/apache-tomcat-6.0.41/apache-tomcat-6.0.41/lib/jsp-api.jar"/>
 	<classpathentry kind="lib" path="E:/wj/apache-tomcat-6.0.41/apache-tomcat-6.0.41/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/upgrade2004/.m2/repository/javax/servlet/jstl/1.2/jstl-1.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

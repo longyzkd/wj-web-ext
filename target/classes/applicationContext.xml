@@ -35,16 +35,8 @@
             <value>
                 <!-- 设置数据库方言 -->
                 hibernate.dialect=org.hibernate.dialect.H2Dialect
-                <!-- 设置自动创建|更新|验证数据库表结构 -->
-                hibernate.hbm2ddl.auto=update
                 <!-- 是否在控制台显示sql -->
                 hibernate.show_sql=true
-                <!-- 是否格式化sql，优化显示 -->
-                hibernate.format_sql=true
-                <!-- 是否开启二级缓存 -->
-                hibernate.cache.use_second_level_cache=false
-                <!-- 是否开启查询缓存 -->
-                hibernate.cache.use_query_cache=false
                 <!-- 数据库批量查询最大数 -->
                 hibernate.jdbc.fetch_size=50
                 <!-- 数据库批量更新、添加、删除操作最大数 -->
