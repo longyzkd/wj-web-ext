@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" isErrorPage="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -21,6 +23,13 @@
     <script type="text/javascript" src="${ctx}/ext/ext-all.js"></script>
     <script type="text/javascript" src="${ctx}/common.js"></script>
     <script type="text/javascript" src="${ctx}/app.js"></script>
+    
+    
+    <script type="text/javascript">
+    	curUser = '<shiro:principal property="name"/>';
+    	ctx = '${ctx}';
+    </script>
+    
 </head>
 
 </html>
