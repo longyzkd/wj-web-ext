@@ -22,25 +22,25 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.ImmutableList;
 
 @Entity
-@Table(name = "ss_user")
+@Table(name = "t_user")
 public class User extends IdEntity {
 	
-	@Column(name="login_Name")
+	
 	private String loginName;
-	@Column(name="name")
+	
 	private String name;
 	
 	private String plainPassword;
-	@Column(name="password")
+	
 	private String password;
-	@Column(name="salt")
+	
 	private String salt;
-	@Column(name="roles")
+	
 	private String roles;
-	@Column(name="register_Date")
+	
 	private Date registerDate;
 
-
+	@Column(name="login_Name")
 	@NotBlank
 	public String getLoginName() {
 		return loginName;
@@ -49,7 +49,7 @@ public class User extends IdEntity {
 	public void setLoginName(String loginName) {
 		this.loginName = loginName;
 	}
-
+	@Column(name="name")
 	@NotBlank
 	public String getName() {
 		return name;
@@ -58,7 +58,8 @@ public class User extends IdEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
+	@Column(name="password")
 	// 不持久化到数据库，也不显示在Restful接口的属性.
 	@Transient
 	@JsonIgnore
@@ -77,7 +78,7 @@ public class User extends IdEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	@Column(name="salt")
 	public String getSalt() {
 		return salt;
 	}
@@ -85,7 +86,7 @@ public class User extends IdEntity {
 	public void setSalt(String salt) {
 		this.salt = salt;
 	}
-
+	@Column(name="roles")
 	public String getRoles() {
 		return roles;
 	}
@@ -100,7 +101,7 @@ public class User extends IdEntity {
 		// 角色列表在数据库中实际以逗号分隔字符串存储，因此返回不能修改的List.
 		return ImmutableList.copyOf(StringUtils.split(roles, ","));
 	}
-
+	@Column(name="register_Date")
 	// 设定JSON序列化时的日期格式
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
 	public Date getRegisterDate() {

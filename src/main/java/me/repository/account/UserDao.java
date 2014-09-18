@@ -7,7 +7,6 @@ package me.repository.account;
 
 import me.entity.User;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface UserDao  {
 	User findByLoginName(String loginName);

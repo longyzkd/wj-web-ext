@@ -4,19 +4,23 @@ Ext.define('DEMO.view.layout.ManagementArea' ,{
 
 	region	: 'center',
 
+	layout:'fit',
     items: [{
         region: 'center',
         margin: '35 5 5 0',
         layout: 'column',
         autoScroll: true,
         defaultType: 'container',
+        
         items: [{
             columnWidth: 1/2,
             padding: 5,
             items:[{
+            	height:300,
                 title: '上传文档',
                 html: '<p>Lorem ipsum</p>'
             },{
+            	height:300,
                 margin: '5 0 0 0',
                 title: '模板下载中心',
                 html: '<p>Lorem ipsum</p>'
@@ -25,9 +29,12 @@ Ext.define('DEMO.view.layout.ManagementArea' ,{
             columnWidth: 1/2,
             padding: 5,
             items:[{
+            	height:300,
                 title: '最新交换情况',
                 html: '<p>Lorem ipsum</p>'
             },{
+            	 margin: '5 0 0 0',
+            	height:300,
                 xtype:'DocSharedList'           
                 
             }]

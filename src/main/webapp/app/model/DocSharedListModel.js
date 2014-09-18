@@ -1,7 +1,13 @@
 Ext.define('DEMO.model.DocSharedListModel', {
     extend	: 'Ext.data.Model',
     fields	: [
-		'zbxmc', 'zywdmc'
+		'zbxmc',
+		{
+			name		: 'uploadTime',
+			type		:'date',
+			dateFormat	: 'Y-m-d h:m:s'
+		}
+		, 'docName','docOfferer','status','downloadCounts'
 	],
 
 	proxy	: {

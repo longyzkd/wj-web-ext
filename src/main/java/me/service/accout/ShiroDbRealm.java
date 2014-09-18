@@ -44,8 +44,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 			return new SimpleAuthenticationInfo(new ShiroUser(user.getId(), user.getLoginName(), user.getName()),
 					user.getPassword(), ByteSource.Util.bytes(salt), getName());
 		} else {
-			return new SimpleAuthenticationInfo(new ShiroUser(1L, "admin", "Admin"),
-					"691b14d79bf0fa2215f155235df5e670b64394cc", ByteSource.Util.bytes( Encodes.decodeHex("7efbd59d9741d34f")), getName());
+			return null;
 		}
 	}
 

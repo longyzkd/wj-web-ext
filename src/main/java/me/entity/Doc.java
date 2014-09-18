@@ -34,7 +34,9 @@ public class Doc extends IdEntity {
 	
 	private Date uploadTime;
 	
-	
+	/**
+	 * 文档名称
+	 */
 	private String docName;
 	
 	/**
