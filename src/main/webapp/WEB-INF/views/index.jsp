@@ -33,6 +33,20 @@
     	curUser = '<shiro:principal property="name"/>';
     	ctx = '${ctx}';
     </script>
+    <script type="text/javascript">
+	    var ajax = function(config) { // 封装、简化AJAX
+	    	Ext.Ajax.request({
+	    				url : config.url, // 请求地址
+	    				params : config.params, // 请求参数
+	    				method : config.method, // 方法
+	    				callback : function(options, success, response) {
+	    					config.callback(Ext.JSON.decode(response.responseText).root);
+	    					// 调用回调函数
+	    				}
+	    			});
+	    	return false;
+	    };
+    </script>
     
 </head>
 

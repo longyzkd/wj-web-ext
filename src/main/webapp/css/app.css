@@ -26,29 +26,252 @@
 
 /*   icons      */
 .icon-user {
-    background-image: url(../static/icons/user.png) !important;
+    background-image: url(../static/icons/icons/user.png) !important;
 }
 
 .icon-user-add {
-    background-image: url(../static/icons/user_add.gif) !important;
+    background-image: url(../static/icons/icons/user_add.gif) !important;
 }
 
 .icon-save {
-    background-image: url(../static/icons/save.gif) !important;
+    background-image: url(../static/icons/icons/save.gif) !important;
 }
 
 .icon-reset {
-    background-image: url(../static/icons/stop.png) !important;
+    background-image: url(../static/icons/icons/stop.png) !important;
 }
 
 .icon-grid {
-    background-image: url(../static/icons/grid.png) !important;
+    background-image: url(../static/icons/icons/grid.png) !important;
 }
 
 .icon-add {
-    background-image: url(../static/icons/add.png) !important;
+    background-image: url(../static/icons/icons/add.png) !important;
 }
 
 .icon-delete {
-    background-image: url(../static/icons/delete.png) !important;
+    background-image: url(../static/icons/icons/delete.png) !important;
+}
+
+
+
+
+
+.icon-nav {
+	background-image: url(../static/icons/nav.png) !important;
+}
+
+.icon-tree {
+	background-image: url(../static/icons/tree.png) !important;
+}
+
+.icon-activity {
+	background-image: url(../static/icons/activity.png) !important;
+}
+
+.icon-hr {
+	background-image: url(../static/icons/hr.png) !important;
+}
+
+.icon-system {
+	background-image: url(../static/icons/system.png) !important;
+}
+
+.icon-user {
+	background-image: url(../static/icons/man.gif) !important;
+}
+.icon-file {
+	background-image: url(../static/icons/download-file.png) !important;
+}
+
+.icon-add {
+	background-image: url(../static/icons/add.png) !important;
+}
+.icon-del {
+	background-image: url(../static/icons/delete.png) !important;
+}
+
+.icon-add-p {
+	background-image: url(../static/icons/add_p.png) !important;
+}
+.icon-del-p {
+	background-image: url(../static/icons/delete_p.png) !important;
+}
+
+.icon-edit {
+	background-image: url(../static/icons/edit.png) !important;
+}
+
+.icon-refresh {
+	background-image: url(../static/icons/refresh.gif) !important;
+}
+
+.icon-grid-list {
+	background-image:url(../static/icons/grid_list.png) !important;
+}
+
+.icon-search-form{
+	background-image: url(../static/icons/search_form.png) !important;
+}
+.icon-form{
+	background-image: url(../static/icons/form.png) !important;
+}
+.icon-search {
+	background-image: url(../static/icons/search.png) !important;
+}
+.icon-save {
+	background-image: url(../static/icons/save.png) !important;
+}
+.icon-reset{
+	background-image:url(../static/icons/reset.png) !important;
+}
+.icon-chart {
+	background-image: url(../static/icons/chart.gif) !important;
+}
+
+.icon-upload {
+	background-image: url(../static/icons/adminFile/upload-file.png) !important;
+}
+
+.icon-unupload {
+	background-image: url(../static/icons/del-file.png) !important;
+}
+
+.icon-download {
+	background-image: url(../static/icons/download-file.png) !important;
+}
+
+.icon-word {
+	background-image: url(../static/icons/word.png) !important;
+}
+
+.icon-pdf {
+	background-image: url(../static/icons/pdf.png) !important;
+}
+
+.icon-excel {
+	background-image: url(../static/icons/excel.png) !important;
+}
+.icon-info {
+	background-image: url(../static/icons/info.gif) !important;
+}
+.icon-logout {
+	background-image: url(../static/icons/logout.png) !important;
+}
+.icon-style {
+	background-image: url(../static/icons/style.png) !important;
+}
+.icon-person-info {
+	background-image: url(../static/icons/person_info.png) !important;
+}
+.icon-person-info-edit{
+	background-image: url(../static/icons/person_info_edit.png) !important;
+}
+.icon-key-edit{
+	background-image: url(../static/icons/key_edit.png) !important;
+}
+.icon-version{
+	background-image: url(../static/icons/version.png) !important;
+}
+.icon-docs{
+	background-image: url(../static/icons/docs.gif) !important;
+}
+.icon-help{
+	background-image: url(../static/icons/help.png) !important;
+}
+.icon-layout{
+	background-image: url(../static/icons/layout.png) !important;
+}
+.icon-grant{
+	background-image: url(../static/icons/grant.png) !important;
+}
+
+.icon-collapse-all{
+	background-image: url(../static/icons/collapse-all.gif) !important;
+}
+
+.icon-expand-all{
+	background-image: url(../static/icons/expand-all.gif) !important;
+}
+
+.icon-load-r{
+	background-image: url(../static/icons/load_r.png) !important;
+}
+
+.icon-yes{
+	background-image: url(../static/icons/yes.png) !important;
+}
+
+.icon-no{
+	background-image: url(../static/icons/no.png) !important;
+}
+
+.icon-ok{
+	background-image: url(../static/icons/ok.png) !important;
+}
+
+.icon-cancel{
+	background-image: url(../static/icons/cancel.png) !important;
+}
+.icon-tip{
+	background-image: url(../static/icons/tip.png) !important;
+}
+
+.icon-logout{
+	background-image: url(../static/icons/logout.png) !important;
+}
+.icon-sys-config{
+	background-image: url(../static/icons/sys_config.png) !important;
+}
+.icon-status-away{
+	background-image: url(../static/icons/status_away.png) !important;
+}
+.icon-status-busy{
+	background-image: url(../static/icons/status_busy.png) !important;
+}
+.icon-status-offline{
+	background-image: url(../static/icons/status_offline.png) !important;
+}
+.icon-status-online{
+	background-image: url(../static/icons/status_online.png) !important;
+}
+.icon-user-info{
+	background-image: url(../static/icons/user_info.png) !important;
+}
+.icon-email{
+	background-image: url(../static/icons/email.png) !important;
+}
+.icon-email-list{
+	background-image: url(../static/icons/email_list.png) !important;
+}
+.icon-im{
+	background-image: url(../static/icons/im.png) !important;
+}
+.icon-note{
+	background-image: url(../static/icons/note.png) !important;
+}
+.icon-link{
+	background-image: url(../static/icons/link.png) !important;
+}
+.icon-notice{
+	background-image: url(../static/icons/notice.png) !important;
+}
+.icon-news{
+	background-image: url(../static/icons/news.png) !important;
+}
+.icon-user-set{
+	background-image: url(../static/icons/user_set.png) !important;
+}
+.icon-accordion{
+	background-image: url(../static/icons/accordion.gif) !important;
+}
+
+.icon-workflow{
+	background-image: url(../static/icons/workflow.png) !important;
+}
+
+
+.x-message-box .icon-saving {
+    background:transparent url(../static/icons/download.gif) no-repeat bottom left;
+    height:46px;
 }

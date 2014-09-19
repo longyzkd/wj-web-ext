@@ -21,6 +21,11 @@
 
 	<!--log4jdbc -->
 	<logger name="jdbc.sqltiming" level="INFO"/>
+	
+	<logger name="org.hibernate" level="ERROR"/>
+	<logger name="org.springframework" level="ERROR"/>
+	<logger name="org.apache.shiro" level="ERROR"/>
+
 
 	<root level="WARN">
 		<appender-ref ref="console" />

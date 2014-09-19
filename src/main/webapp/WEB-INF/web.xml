@@ -36,14 +36,6 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-<!-- 	<filter> -->
-<!-- 		<filter-name>openEntityManagerInViewFilter</filter-name> -->
-<!-- 		<filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class> -->
-<!-- 	</filter> -->
-<!-- 	<filter-mapping> -->
-<!-- 		<filter-name>openEntityManagerInViewFilter</filter-name> -->
-<!-- 		<url-pattern>/*</url-pattern> -->
-<!-- 	</filter-mapping> -->
 
 	<filter>
 		<filter-name>shiroFilter</filter-name>
@@ -58,14 +50,6 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-<!-- 	<filter> -->
-<!-- 		<filter-name>sitemeshFilter</filter-name> -->
-<!-- 		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class> -->
-<!-- 	</filter> -->
-<!-- 	<filter-mapping> -->
-<!-- 		<filter-name>sitemeshFilter</filter-name> -->
-<!-- 		<url-pattern>/*</url-pattern> -->
-<!-- 	</filter-mapping> -->
 
 	<servlet>
 		<servlet-name>springServlet</servlet-name>
@@ -85,18 +69,6 @@
 		<session-timeout>20</session-timeout>
 	</session-config>
 
-	<error-page>
-		<exception-type>java.lang.Throwable</exception-type>
-		<location>/WEB-INF/views/error/500.jsp</location>
-	</error-page>
-	<error-page>
-		<error-code>500</error-code>
-		<location>/WEB-INF/views/error/500.jsp</location>
-	</error-page>
-	<error-page>
-		<error-code>404</error-code>
-		<location>/WEB-INF/views/error/404.jsp</location>
-	</error-page>
 	
 	<welcome-file-list>
 		<welcome-file>/WEB-INF/views/index.jsp</welcome-file>  
