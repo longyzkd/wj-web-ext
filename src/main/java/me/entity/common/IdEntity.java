@@ -3,7 +3,7 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  *******************************************************************************/
-package me.entity;
+package me.entity.common;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;

@@ -3,7 +3,7 @@ package me.service.resource;
 import java.util.List;
 
 import me.entity.Doc;
-import me.entity.Resource;
+import me.entity.Menu;
 import me.repository.resource.ResourceDao;
 
 import org.slf4j.Logger;
@@ -22,11 +22,11 @@ public class ResourceService {
 	private ResourceDao dao;
 
 	@Transactional(readOnly=true)
-	public List<Resource> getPanels() {
-		return dao.findPanels();
+	public List<Menu> getPanels(Long userId) {
+		return dao.findPanels(userId);
 	}
 	@Transactional(readOnly=true)
-	public List<Resource> getNodes(String id) {
+	public List<Menu> getNodes(String id) {
 		return dao.findNodes(id);
 	}
 }

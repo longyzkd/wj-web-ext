@@ -7,10 +7,12 @@ package me.web.resource;
 
 import javax.servlet.ServletRequest;
 
+import me.service.accout.ShiroDbRealm.ShiroUser;
 import me.service.resource.ResourceService;
 import me.utils.Constants;
 import me.utils.ExtJSReturn;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +37,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ResourceController {
 
 
+	
 
 	@Autowired
 	private ResourceService service;
@@ -45,7 +48,7 @@ public class ResourceController {
 
 		String view = request.getParameter("view");
 		if(Constants.TREE_VIEW.list.name().equals(view)){//面板
-			return ExtJSReturn.listToMap(service.getPanels());
+			return ExtJSReturn.listToMap(service.getPanels(getCurrentUserId()));
 		}else if(Constants.TREE_VIEW.node.name().equals(view)){//树
 			String id = request.getParameter("id");
 			return ExtJSReturn.listToMap(service.getNodes(id));
@@ -53,4 +56,14 @@ public class ResourceController {
 		
 		return null;
 	}
+	
+	
+	/**
+	 * 取出Shiro中的当前用户Id.
+	 */
+	private Long getCurrentUserId() {
+		ShiroUser user = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
+		return user.id;
+	}
 }
+

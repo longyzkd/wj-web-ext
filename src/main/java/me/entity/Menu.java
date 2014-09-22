@@ -10,12 +10,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import me.entity.common.IdEntity;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 
 @Entity
-@Table(name = "t_resource")
-public class Resource extends IdEntity {
+@Table(name = "sys_menu")
+public class Menu extends IdEntity {
 	
 
 	private String component;

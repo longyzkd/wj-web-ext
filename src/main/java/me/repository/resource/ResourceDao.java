@@ -8,13 +8,13 @@ package me.repository.resource;
 import java.util.List;
 
 import me.entity.Doc;
-import me.entity.Resource;
+import me.entity.Menu;
 
 
 public interface ResourceDao  {
 
-	List<Resource> findPanels();
+	List<Menu> findPanels(Long userId);
 
-	List<Resource> findNodes(String  id);
+	List<Menu> findNodes(String  id);
 
 }
