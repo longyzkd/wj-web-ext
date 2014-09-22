@@ -89,3 +89,32 @@ function toggleEnabled(items, action)
             }
     });
 }
+
+
+
+//wjs.prototype.showTab = function (id,name) {
+//	 
+////	HO.log("HO.Class.CRUD.showTab " + id + " " + name);
+// 
+//	var tabID = this.ComponentName + id;
+//	var tab = this.TabPanel.items.find(function(i){
+//		return i.id === tabID;
+//	})
+//	if (!tab) { 
+//		 showObject = 	this.getShowObject(id,tabID, name);
+// 
+//		this.TabPanel.add( showObject ).show();
+//		// x = {title: "dupa", layout: 'fit', items: [showObject]
+//		// ,autoScroll		: 	true
+//		// ,bodyStyle		: 	'position:relative'
+//		// 
+//		// }
+//		// 	
+//		// this.TabPanel.add( x ).show();
+// 
+// 
+//	} else {
+////		HO.log('tab exists');
+//		this.TabPanel.setActiveTab(tabID);
+//	}
+//}

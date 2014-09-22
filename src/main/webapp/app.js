@@ -52,6 +52,7 @@ Ext.application({
 function addTree(data) {
 	Ext.getBody().unmask();
 	var  tree = Ext.getCmp('treeContainer');
+	var  tab = Ext.getCmp('managementArea');
 	for (var i = 0; i < data.length; i++) {
 		tree.add(Ext.create("Ext.tree.Panel", {
 					title : data[i].text,
@@ -76,18 +77,30 @@ function addTree(data) {
 						},
 						itemclick : function(view,node){
 							if (node.isLeaf()) { //判断是否是根节点
-								if(node.data.type === 'URL'){ //判断资源类型
-									var panel = Ext.create('Ext.panel.Panel',{
-										title : node.data.text,
-										closable : true,
-										iconCls : 'icon-activity',
-										html : '<iframe width="100%" height="100%" frameborder="0" src="http://www.baidu.com"></iframe>'
-									});
-									tab.add(panel);
-									tab.setActiveTab(panel);
-								}else if(node.data.type === 'COMPONENT'){
-									var panel = Ext.create(node.data.component,{
-										title : node.data.text,
+								if(node.raw.type === 'URL'){ //判断资源类型
+									var panel = Ext.getCmp(node.raw.id);
+									if(panel){
+										tab.setActiveTab(panel);
+									}else{
+										 panel = Ext.create('Ext.panel.Panel',{
+											title : node.raw.text,
+											closable : true,
+											id:node.raw.id,
+											iconCls : 'icon-activity',
+											html : '欢迎'
+//												html : '<iframe width="100%" height="100%" frameborder="0" src="http://www.baidu.com"></iframe>'
+										});
+										tab.add(panel);
+										tab.setActiveTab(panel);
+										
+									}
+									
+									
+									
+								}else if(node.raw.type === 'COMPONENT'){
+									var panel = Ext.create(node.raw.component,{
+										title : node.raw.text,
+										id:node.raw.id,
 										closable : true,
 										iconCls : 'icon-activity'
 									});

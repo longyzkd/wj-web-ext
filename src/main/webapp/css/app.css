@@ -130,7 +130,7 @@
 }
 
 .icon-upload {
-	background-image: url(../static/icons/adminFile/upload-file.png) !important;
+	background-image: url(../static/icons/upload-file.png) !important;
 }
 
 .icon-unupload {
@@ -274,4 +274,9 @@
 .x-message-box .icon-saving {
     background:transparent url(../static/icons/download.gif) no-repeat bottom left;
     height:46px;
+}
+
+
+.icon-share{
+	background-image: url(../static/icons/reset.png) !important;
 }

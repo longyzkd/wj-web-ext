@@ -102,6 +102,7 @@ Ext.define('DEMO.view.layout.ManagementArea', {
 	extend : 'Ext.tab.Panel',
 	alias : 'widget.ManagementArea',
 
+	id:'managementArea',
 	region : 'center',
 
 	layout : 'fit',
@@ -123,11 +124,11 @@ Ext.define('DEMO.view.layout.ManagementArea', {
 			items : [ {
 				title : '上传文档',
 				height:300,
-				iconCls : 'icon-news'
+				iconCls : 'icon-upload'
 			}, {
 				title : '模板下载中心',
 				height:300,
-				iconCls : 'icon-notice'
+				iconCls : 'icon-file'
 			}]
 		}, {
 			xtype : 'portalcolumn',
@@ -137,9 +138,12 @@ Ext.define('DEMO.view.layout.ManagementArea', {
 				height:300,
 				iconCls : 'icon-link'
 			},{
+				 title: '文档共享中心',
+				height:300,
+				iconCls : 'icon-share', 
 				items:[{
 	            	 margin: '5 0 0 0',
-	             	height:300,
+	             	 height:300,
 	                 xtype:'DocSharedList'           
 	                 
 	             }]

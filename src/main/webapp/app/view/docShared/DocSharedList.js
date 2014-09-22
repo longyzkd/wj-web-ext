@@ -3,7 +3,7 @@ Ext.define('DEMO.view.docShared.DocSharedList' ,{
     alias : 'widget.DocSharedList',
 
     store: 'DocSharedListStore',
-    title: '文档共享中心',
+   
     initComponent: function() {
         this.columns = [
                         { text: '指标项名称',  dataIndex: 'zbxmc' },
