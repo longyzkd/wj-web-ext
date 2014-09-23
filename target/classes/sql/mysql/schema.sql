@@ -1,4 +1,4 @@
-drop table if exists ss_user;
+drop table if exists sys_user;
 
 create table sys_user (
 	id bigint auto_increment,

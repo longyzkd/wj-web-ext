@@ -1,0 +1,10 @@
+INSERT INTO `sys_role_menu` VALUES (1, 1);
+INSERT INTO `sys_role_menu` VALUES (1, 22);
+INSERT INTO `sys_role_menu` VALUES (1, 29);
+INSERT INTO `sys_role_menu` VALUES (1, 184);
+INSERT INTO `sys_role_menu` VALUES (2, 22);
+INSERT INTO `sys_role_menu` VALUES (2, 29);
+INSERT INTO `sys_role_menu` VALUES (2, 184);
+INSERT INTO `sys_role_menu` VALUES (3, 22);
+INSERT INTO `sys_role_menu` VALUES (3, 29);
+INSERT INTO `sys_role_menu` VALUES (3, 184);
