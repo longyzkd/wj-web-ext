@@ -16,16 +16,14 @@
 		</encoder>
 	</appender>
 
-	<!-- project default level -->
-	<logger name="me" level="INFO" />
 
 	<!--log4jdbc -->
 	<logger name="jdbc.sqltiming" level="INFO"/>
 	
-	<logger name="org.hibernate" level="ERROR"/>
-<!-- 	<logger name="org.springframework" level="ERROR"/> -->
+	<logger name="org.hibernate" level="info"/>
+	<logger name="org.springframework" level="ERROR"/>
 	<logger name="org.apache.shiro" level="ERROR"/>
-	<logger name="org.hibernate.search.impl.ConfigContext" level="ERROR"/>
+<!-- 	<logger name="org.hibernate.search.impl.ConfigContext" level="ERROR"/> -->
 	<logger name="me" level="INFO"/>
 
 

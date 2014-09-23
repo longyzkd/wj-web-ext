@@ -8,17 +8,18 @@ package me.repository.docShared;
 import java.util.List;
 
 import me.entity.Doc;
-import me.repository.CommonDao;
+import me.entity.Menu;
+import me.repository.common.CommonDao;
 
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DocSharedDaoImp extends CommonDao implements DocSharedDao {
+public class DocSharedDaoImp extends CommonDao<Doc> implements DocSharedDao {
 
-	@SuppressWarnings("unchecked")
 	public List<Doc> findDocs() {
-		return  currentSession()
-				.createCriteria(Doc.class).list();
+		DetachedCriteria  detachedCriteria =  DetachedCriteria.forClass(Doc.class);
+		return find(detachedCriteria);
 	}
 	
 }

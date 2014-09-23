@@ -8,38 +8,33 @@ package me.repository.resource;
 import java.util.List;
 
 import me.entity.Menu;
-import me.repository.CommonDao;
+import me.repository.common.CommonDao;
+import me.repository.common.Parameter;
 
+import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ResourceDaoImp extends CommonDao implements ResourceDao {
+public class ResourceDaoImp extends CommonDao<Menu> implements ResourceDao {
 	
 	
-	@SuppressWarnings("unchecked")
 	public List<Menu> findPanels(Long userId) {
-//		return (List<Menu>)currentSession()
-//										.createCriteria(Menu.class)
-//										.add(Restrictions.isNull("parentId"))
-//										.addOrder(Order.asc("sort"))
-//										.list();
 		
 		StringBuilder hql  =  new StringBuilder();
 		
-		hql.append(" select m from Menu m ,User u ,Role r , UserRole ur ,RoleMenu rm where u.id=? and u.id = ur.userId and ur.roleId = r.id and r.id = rm.roleId and rm.menuId = m.id ");
+		hql.append(" select m from Menu m ,User u ,Role r , UserRole ur ,RoleMenu rm where u.id=:p1 and u.id = ur.userId and ur.roleId = r.id and r.id = rm.roleId and rm.menuId = m.id ");
 		hql.append(" order by m.sort");
-		return currentSession().createQuery(hql.toString()).setParameter(0, userId).list();
+		return find(hql.toString(), new Parameter(userId));
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<Menu> findNodes(String id) {
-		return (List<Menu>)currentSession()
-								.createCriteria(Menu.class)
-								.add(Restrictions.eq("parentId", Long.valueOf(id)))
-								.addOrder(Order.asc("sort"))
-								.list();
+		
+		DetachedCriteria  detachedCriteria =  DetachedCriteria.forClass(Menu.class);
+		detachedCriteria.add(Restrictions.eq("parentId", Long.valueOf(id)))
+						.addOrder(Order.asc("sort"));
+		return find(detachedCriteria);
 	}
 
 
