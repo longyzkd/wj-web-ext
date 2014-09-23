@@ -334,7 +334,7 @@
 <!-- 			<scope>test</scope> -->
 <!-- 		</dependency> -->
 		<!-- TEST end -->
-	</dependencies>
+ </dependencies>
 	
  <dependencyManagement>
 		<dependencies>

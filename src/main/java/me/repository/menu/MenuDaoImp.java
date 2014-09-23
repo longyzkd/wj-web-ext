@@ -3,21 +3,24 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  *******************************************************************************/
-package me.repository.resource;
+package me.repository.menu;
 
 import java.util.List;
 
 import me.entity.Menu;
+import me.entity.Office;
 import me.repository.common.CommonDao;
+import me.repository.common.Page;
 import me.repository.common.Parameter;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ResourceDaoImp extends CommonDao<Menu> implements ResourceDao {
+public class MenuDaoImp extends CommonDao<Menu> implements MenuDao {
 	
 	
 	public List<Menu> findPanels(Long userId) {
@@ -36,6 +39,8 @@ public class ResourceDaoImp extends CommonDao<Menu> implements ResourceDao {
 						.addOrder(Order.asc("sort"));
 		return find(detachedCriteria);
 	}
+
+	
 
 
 	

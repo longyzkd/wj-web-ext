@@ -17,7 +17,8 @@ Ext.application({
 
     controllers: [
 		'LayoutController',
-		'DocSharedListController'
+		'DocSharedListController',
+		'OfficeListController'
     ],
     autoCreateViewport	: false,
 
@@ -34,7 +35,7 @@ Ext.application({
 					afterrender : function(){
 						Ext.getBody().mask('正在加载系统菜单....');
 						ajax({
-							url : 'resource/list',// 获取面板的地址
+							url : 'menu/list',// 获取面板的地址
 							params : {
 								view : "list"
 							},
@@ -101,7 +102,7 @@ function addTree(data) {
 									if(panel){
 										tab.setActiveTab(panel);
 									}else{
-										var panel = Ext.create(node.raw.component,{
+										var panel = Ext.widget(node.raw.component,{
 											title : node.raw.text,
 											id:node.raw.id,
 											closable : true,
@@ -138,7 +139,7 @@ function addTree(data) {
 					model : model,
 					proxy : {
 						type : "ajax", // 获取方式
-						url : "resource/list?view=node", // 获取树节点的地址
+						url : "menu/list?view=node", // 获取树节点的地址
 						reader			: {
 							type			: 'json',
 							root			: 'root',

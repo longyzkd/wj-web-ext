@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import me.repository.common.Page;
+
 import org.springframework.stereotype.Component;
 
 import com.google.common.collect.Maps;
@@ -24,7 +26,23 @@ import com.google.common.collect.Maps;
 @Component
 public class ExtJSReturn {
 
-	
+	/**
+	 * 分页
+	 * @param T
+	 * @return
+	 */
+	public static <T> Map<String, Object> listToMap(Page<T> T) {
+		Map<String, Object> map = Maps.newHashMap();
+		map.put("root", T.getList());
+		map.put("success", true);
+		map.put("totalCount", T.getCount());
+		return map;
+	}
+	/**
+	 * 不分页
+	 * @param T
+	 * @return
+	 */
 	public static <T> Map<String, Object> listToMap(List<T> T) {
 		Map<String, Object> map = Maps.newHashMap();
 		map.put("root", T);

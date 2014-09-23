@@ -29,6 +29,25 @@ public class Office extends DataEntity {
 	private String fax;
 	private String email;
 	
+	private String officeCode;
+	/**
+	 * 拼音码
+	 */
+	private String spellCode;
+	
+	
+	public String getSpellCode() {
+		return spellCode;
+	}
+	public void setSpellCode(String spellCode) {
+		this.spellCode = spellCode;
+	}
+	public String getOfficeCode() {
+		return officeCode;
+	}
+	public void setOfficeCode(String officeCode) {
+		this.officeCode = officeCode;
+	}
 	@Column(name="parent_id")
 	public Long getParentId() {
 		return parentId;

@@ -11,6 +11,7 @@ import me.service.accout.ShiroDbRealm.ShiroUser;
 import me.service.resource.ResourceService;
 import me.utils.Constants;
 import me.utils.ExtJSReturn;
+import me.web.CommonController;
 
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Task管理的Controller, 使用Restful风格的Urls:
+ * 菜单
  * 
  * List page : GET /task/
  * Create page : GET /task/create
@@ -30,11 +31,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Update action : POST /task/update
  * Delete action : GET /task/delete/{id}
  * 
- * @author calvin
+ * @author wj
  */
 @Controller
-@RequestMapping(value = "/resource")
-public class ResourceController {
+@RequestMapping(value = "/menu")
+public class MenuController extends CommonController {
 
 
 	
@@ -58,12 +59,5 @@ public class ResourceController {
 	}
 	
 	
-	/**
-	 * 取出Shiro中的当前用户Id.
-	 */
-	private Long getCurrentUserId() {
-		ShiroUser user = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
-		return user.id;
-	}
 }
 

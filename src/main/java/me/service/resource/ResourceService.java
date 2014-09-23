@@ -2,9 +2,11 @@ package me.service.resource;
 
 import java.util.List;
 
-import me.entity.Doc;
 import me.entity.Menu;
-import me.repository.resource.ResourceDao;
+import me.entity.Office;
+import me.repository.common.Page;
+import me.repository.menu.MenuDao;
+import me.repository.office.OfficeDao;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,14 +21,20 @@ public class ResourceService {
 	private static Logger logger = LoggerFactory.getLogger(ResourceService.class);
 	
 	@Autowired
-	private ResourceDao dao;
+	private MenuDao menuDao;
+	@Autowired
+	private OfficeDao officeDao;
 
 	@Transactional(readOnly=true)
 	public List<Menu> getPanels(Long userId) {
-		return dao.findPanels(userId);
+		return menuDao.findPanels(userId);
 	}
 	@Transactional(readOnly=true)
 	public List<Menu> getNodes(String id) {
-		return dao.findNodes(id);
+		return menuDao.findNodes(id);
+	}
+	public Page<Office> getOffices(Page<Office> pageObj, Office office) {
+		return officeDao.findOffices(pageObj,office);
+		
 	}
 }
