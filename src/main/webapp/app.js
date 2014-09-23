@@ -95,17 +95,24 @@ function addTree(data) {
 										
 									}
 									
-									
-									
 								}else if(node.raw.type === 'COMPONENT'){
-									var panel = Ext.create(node.raw.component,{
-										title : node.raw.text,
-										id:node.raw.id,
-										closable : true,
-										iconCls : 'icon-activity'
-									});
-									tab.add(panel);
-									tab.setActiveTab(panel);
+									
+									var panel = Ext.getCmp(node.raw.id);
+									if(panel){
+										tab.setActiveTab(panel);
+									}else{
+										var panel = Ext.create(node.raw.component,{
+											title : node.raw.text,
+											id:node.raw.id,
+											closable : true,
+											iconCls : 'icon-activity'
+										});
+										tab.add(panel);
+										tab.setActiveTab(panel);
+										
+									}
+									
+									
 								}
 							}
 						}

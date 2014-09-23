@@ -29,6 +29,7 @@ public class ResourceDaoImp extends CommonDao implements ResourceDao {
 		StringBuilder hql  =  new StringBuilder();
 		
 		hql.append(" select m from Menu m ,User u ,Role r , UserRole ur ,RoleMenu rm where u.id=? and u.id = ur.userId and ur.roleId = r.id and r.id = rm.roleId and rm.menuId = m.id ");
+		hql.append(" order by m.sort");
 		return currentSession().createQuery(hql.toString()).setParameter(0, userId).list();
 	}
 
