@@ -14,7 +14,7 @@ CREATE TABLE `sys_menu` (
   `id` int(11) NOT NULL auto_increment,
   `component` varchar(255) default NULL,
   `description` varchar(255) default NULL,
-  `iconCls` varchar(255) default NULL,
+  `icon_cls` varchar(255) default NULL,
   `text` varchar(255) default NULL,
   `sort` int(11) default NULL,
   `type` varchar(255) default NULL,

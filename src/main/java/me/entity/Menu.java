@@ -45,7 +45,7 @@ public class Menu extends IdEntity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	@Column(name="iconCls")
+	@Column(name="icon_Cls")
 	public String getIconCls() {
 		return iconCls;
 	}

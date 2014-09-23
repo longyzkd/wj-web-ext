@@ -40,9 +40,13 @@
                 <!--  javax.persistence.validation.mode默认情况下是auto的，就是说如果不设置的话它是会自动去你的classpath下面找一个bean-validation**包 
                      所以把它设置为none即可-->
                 javax.persistence.validation.mode=none
-                hibernate.ejb.naming_strategy=org.hibernate.cfg.ImprovedNamingStrategy
+<!--                 hibernate.ejb.naming_strategy=org.hibernate.cfg.ImprovedNamingStrategy -->
             </value>
         </property>
+        
+        <property name="namingStrategy">
+	     	 <bean class="org.hibernate.cfg.ImprovedNamingStrategy" />
+	    </property>
         
     </bean>
     
