@@ -21,11 +21,11 @@ public class OfficeDaoImp extends CommonDao<Office> implements OfficeDao {
 	
 	public Page<Office> findOffices(Page<Office> pageObj, Office office) {
 		DetachedCriteria  detachedCriteria =  DetachedCriteria.forClass(Office.class);
-		if(StringUtils.isBlank(office.getName())){
+		if(!StringUtils.isBlank(office.getName())){
 			detachedCriteria.add(Restrictions.eq("name", office.getName()));
 		}
-		if(StringUtils.isBlank(office.getOfficeCode())){
-			detachedCriteria.add(Restrictions.eq("name", office.getOfficeCode()));
+		if(!StringUtils.isBlank(office.getOfficeCode())){
+			detachedCriteria.add(Restrictions.eq("officeCode", office.getOfficeCode()));
 		}
 		return find(pageObj, detachedCriteria);
 	}

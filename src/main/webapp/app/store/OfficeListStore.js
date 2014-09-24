@@ -3,11 +3,11 @@ Ext.define('DEMO.store.OfficeListStore', {
 	model	: 'DEMO.model.OfficeListModel',
 
 	pageSize	: pageSize,
-	autoLoad	: true,
+	autoLoad	: true
 
-	remoteSort	: true,
-	sorters		: {
-		property: 'officeCode',
-		direction: 'ASC'
-	}
+//	remoteSort	: true,
+//	sorters		: {
+//		property: 'officeCode',
+//		direction: 'ASC'
+//	}
 });

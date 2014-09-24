@@ -40,18 +40,12 @@ public class OfficeController extends CommonController{
 	private ResourceService service;
 
 	@RequestMapping(value="list" ,method = RequestMethod.GET)
-	public @ResponseBody  Object list(int page,int limit,Office office) {
+	public @ResponseBody  Object list(Page<Office> page,Office office) {
 
-		System.out.println("-----------------------------------");  
-		System.out.println("page=="+page);  
-		System.out.println("limit=="+limit);//pagesize  
-		System.out.println("-----------------------------------");  
+		page = service.getOffices(page,office);
 		
-		Page<Office> pageObj = new Page<Office>();
-		pageObj.setPageNo(page);
-		pageObj.setPageSize(limit);
-		pageObj = service.getOffices(pageObj,office);
-		return ExtJSReturn.listToMap(pageObj);
+		
+		return ExtJSReturn.listToMap(page);
 	}
 	
 	

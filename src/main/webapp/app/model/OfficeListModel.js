@@ -17,7 +17,17 @@ Ext.define('DEMO.model.OfficeListModel', {
 			successProperty	: 'success'
 		},
 	
-		simpleSortMode	: true
+		
+		//封装后台Page对象
+		pageParam : "pageNo",
+        limitParam: "pageSize",
+       // sortParam: "sort",
+        //directionParam: "dir"
+//        simpleSortMode	: true,
+        extraParams :{//用来排序
+        	orderBy:'officeCode ,name  '
+        }
+
 	}	
 	
 });

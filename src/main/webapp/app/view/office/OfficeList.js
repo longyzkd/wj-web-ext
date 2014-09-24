@@ -7,9 +7,9 @@ Ext.define('DEMO.view.office.OfficeList' ,{
     initComponent: function() {
         this.columns = [
                         { text: '序号',  dataIndex: 'zbxmc' },
-                        { text: '部门名称', dataIndex: 'docName', flex: 1 },
-                        { text: '部门编码', dataIndex: 'docName', flex: 1 },
-                        { text: '拼音码', dataIndex: 'docName', flex: 1 },
+                        { text: '部门名称', dataIndex: 'name', flex: 1 },
+                        { text: '部门编码', dataIndex: 'officeCode', flex: 1 },
+                        { text: '拼音码', dataIndex: 'spellCode', flex: 1 },
                         
                         { text: '操作',
                         	xtype:'actioncolumn',

@@ -33,7 +33,7 @@
     	curUser = '<shiro:principal property="name"/>';
     	ctx = '${ctx}';
     	//TODO 从后台带过来
-    	pageSize=10;
+    	pageSize=2;
     </script>
     <script type="text/javascript">
 	    var ajax = function(config) { // 封装、简化AJAX
