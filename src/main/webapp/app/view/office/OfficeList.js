@@ -3,12 +3,12 @@ Ext.define('DEMO.view.office.OfficeList' ,{
     alias : 'widget.OfficeList',
 
     store: 'OfficeListStore',
-   
+//    selModel:Ext.create('Ext.selection.CheckboxModel',{mode:"SIMPLE"}),
+    selModel:Ext.create('Ext.selection.RowModel',{mode:"SIMPLE"}),
     initComponent: function() {
         this.columns = [
                         { text: '序号', 
                 	      renderer:function(value,metadata,record,rowIndex, colIndex, store) {
-                	    	  console.log(store);
                           
                                  var start = store.lastOptions.start;
                                  if (isNaN(start)) 
@@ -57,22 +57,31 @@ Ext.define('DEMO.view.office.OfficeList' ,{
         this.dockedItems=[{
     		dock: 'top',
     		 xtype: 'toolbar',
-    		items:[ '->','部门名称',{
+    		items:[
+    		       {text:'新增部门',iconCls:'icon-add',action:'add'},
+    		       '-',
+    		       {text:'删除所选',iconCls:'icon-del',action:'del'},
+    		       '->',
+    		       '部门名称',{
                 xtype    : 'textfield',
-                name     : 'field1',
+                name     : 'name',
                 emptyText: '请输入'
             },'部门编码',{
                 xtype    : 'textfield',
-                name     : 'field1',
+                name     : 'officeCode',
                 emptyText: '请输入'
             },{
-                text: '查询'
+                text: '查询',
+                action:'query',
+                iconCls:'icon-search'
             }]
     	},{
     		dock: 'bottom',
             xtype: 'pagingtoolbar',
             store: 'OfficeListStore',   // same store GridPanel is using
-            displayInfo: true
+            displayInfo: true,
+            displayMsg: 'Displaying  {0} - {1} of {2}',
+            emptyMsg: "没有记录"
         }];
 
         this.callParent(arguments);

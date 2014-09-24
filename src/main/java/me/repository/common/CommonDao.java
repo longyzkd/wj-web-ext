@@ -304,6 +304,16 @@ public class CommonDao<T> {
 	}
 	
 	/**
+	 * 物理删除
+	 * @param id
+	 * @return
+	 */
+	public int delete(Serializable id){
+		String hql = "delete from " +entityClass.getSimpleName()+" where id=:p1";
+		return createQuery(hql, new Parameter(id)).executeUpdate();
+	}
+	
+	/**
 	 * 更新删除标记
 	 * @param id
 	 * @param delFlag

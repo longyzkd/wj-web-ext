@@ -37,4 +37,21 @@ public class ResourceService {
 		return officeDao.findOffices(pageObj,office);
 		
 	}
+	public void del(Office office) {
+		if(office != null && office.getId()!=null){
+			officeDao.delete(office.getId());
+		}else{
+			throw new RuntimeException();
+		}
+		
+	}
+	public void del(Menu menu) {
+		if(menu != null && menu.getId()!=null){
+			menuDao.delete(menu.getId());
+		}else{
+			throw new RuntimeException();
+		}
+		
+		
+	}
 }

@@ -8,15 +8,20 @@ Ext.define('DEMO.model.OfficeListModel', {
 
 	proxy	: {
 		type			: 'ajax',
-		url				: 'sys/office/list',
-
+//		url				: 'sys/office/list',
 		reader			: {
 			type			: 'json',
 			root			: 'root',
 			totalProperty	: 'totalCount',
 			successProperty	: 'success'
 		},
-	
+		 
+        api: {
+        	read : 'sys/office/list',
+            create : 'sys/office/add',
+            update: 'sys/office/edit',
+            destroy: 'sys/office/delete'
+        },
 		
 		//封装后台Page对象
 		pageParam : "pageNo",
@@ -25,8 +30,9 @@ Ext.define('DEMO.model.OfficeListModel', {
         //directionParam: "dir"
 //        simpleSortMode	: true,
         extraParams :{//用来排序
-        	orderBy:'officeCode ,name  '
-        }
+        	orderBy:'officeCode ,name'
+        },
+       
 
 	}	
 	

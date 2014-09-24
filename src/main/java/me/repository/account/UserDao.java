@@ -6,8 +6,22 @@
 package me.repository.account;
 
 import me.entity.User;
+import me.repository.common.CommonDao;
 
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Component;
 
-public interface UserDao  {
-	User findByLoginName(String loginName);
+@Component
+public class UserDao extends CommonDao<User>  {
+	
+	public User findByLoginName(String loginName){
+		
+		DetachedCriteria  detachedCriteria =  DetachedCriteria.forClass(User.class);
+		detachedCriteria.add(Restrictions.eq("loginName", loginName));
+		return find(detachedCriteria).get(0);
+		
+		
+		
+	};
 }
