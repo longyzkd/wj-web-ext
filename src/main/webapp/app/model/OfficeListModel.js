@@ -23,7 +23,7 @@ Ext.define('DEMO.model.OfficeListModel', {
         },
         api: {
         	read : 'sys/office/list',
-            create : 'sys/office/add',
+            create : 'sys/office/create',
             update: 'sys/office/edit',
             destroy: 'sys/office/delete'
         },

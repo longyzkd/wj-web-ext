@@ -13,9 +13,8 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
-import me.entity.User;
+import me.service.accout.ShiroDbRealm.ShiroUser;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -41,10 +40,10 @@ public abstract class DataEntity extends IdEntity implements Serializable {
 	
 	@PrePersist
 	public void prePersist(){
-		User user = (User)SecurityUtils.getSubject().getPrincipal();
-		if (user.getId() !=null){
-			this.updateBy = user.getLoginName();
-			this.createBy = user.getLoginName();
+		ShiroUser user = (ShiroUser)SecurityUtils.getSubject().getPrincipal();
+		if (user.id!=null){
+			this.updateBy = user.loginName;
+			this.createBy = user.loginName;
 		}
 		this.updateDate = new Date();
 		this.createDate = this.updateDate;
@@ -52,9 +51,9 @@ public abstract class DataEntity extends IdEntity implements Serializable {
 	
 	@PreUpdate
 	public void preUpdate(){
-		User user = (User)SecurityUtils.getSubject().getPrincipal();
-		if (user.getId() !=null){
-			this.updateBy = user.getLoginName();
+		ShiroUser user = (ShiroUser)SecurityUtils.getSubject().getPrincipal();
+		if (user.id !=null){
+			this.updateBy = user.loginName;
 		}
 		this.updateDate = new Date();
 	}

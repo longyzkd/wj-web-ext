@@ -63,4 +63,8 @@ public class ResourceService {
 		}
 		
 	}
+	public void create(Office office) {
+		officeDao.save(office);
+		
+	}
 }

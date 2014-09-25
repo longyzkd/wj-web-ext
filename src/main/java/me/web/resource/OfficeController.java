@@ -65,13 +65,36 @@ public class OfficeController extends CommonController{
 			
 			JavaType beanListType = mapper.contructCollectionType(List.class, Office.class);
 			List<Office> beanList = mapper.fromJson(wrap(officesJson), beanListType);
-//			service.del(offices.getRoot());
 			service.del(beanList);
-			
 			return ExtJSReturn.mapOK("刪除成功");
-			
 //			throw new Exception();
 
+		} catch (Exception e) {//TODO 做成过滤器
+			logger.error(e.getMessage());
+			return ExtJSReturn.mapError("系统错误");
+		}
+	}
+	@RequestMapping(value="create",method = RequestMethod.POST)
+	public @ResponseBody Object create(@RequestBody Office office)  {
+		try{
+			
+			service.create(office);
+			return ExtJSReturn.mapOK("新增成功");
+//			throw new Exception();
+			
+		} catch (Exception e) {//TODO 做成过滤器
+			logger.error(e.getMessage());
+			return ExtJSReturn.mapError("系统错误");
+		}
+	}
+	@RequestMapping(value="edit",method = RequestMethod.POST)
+	public @ResponseBody Object edit(@RequestBody Office office)  {
+		try{
+			
+			service.create(office);
+			return ExtJSReturn.mapOK("修改成功");
+//			throw new Exception();
+			
 		} catch (Exception e) {//TODO 做成过滤器
 			logger.error(e.getMessage());
 			return ExtJSReturn.mapError("系统错误");
