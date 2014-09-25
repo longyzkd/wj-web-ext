@@ -95,4 +95,12 @@ public class ExtJSReturn {
 
 		return modelMap;
 	} 
+	public static Map<String,Object> mapOK(String msg){
+		
+		Map<String,Object> modelMap = new HashMap<String,Object>(2);
+		modelMap.put("message", msg);
+		modelMap.put("success", true);
+		
+		return modelMap;
+	} 
 }

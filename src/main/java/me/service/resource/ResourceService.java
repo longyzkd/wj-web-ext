@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 @Component
 @Transactional
@@ -52,6 +53,14 @@ public class ResourceService {
 			throw new RuntimeException();
 		}
 		
+		
+	}
+	public void del(List<Office > root) {
+		if(!CollectionUtils.isEmpty(root)){
+			for(Office off:root){
+				del(off);
+			}
+		}
 		
 	}
 }

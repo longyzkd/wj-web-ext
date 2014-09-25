@@ -51,7 +51,34 @@ Ext.define('DEMO.controller.OfficeListController', {
 
     	if(record && record.length){
     		 store.remove(record);
-    		 store.sync();
+    		 store.sync({
+                 success: function(batch) {
+                	 console.log(batch);
+                	 Ext.MessageBox.show({
+                         title: '提示',
+                         msg: Ext.decode(batch.operations[0].response.responseText).message,
+                         icon: Ext.MessageBox.INFO,
+                         buttons: Ext.Msg.OK,
+                         fn: function(buttonId) {
+                             if (buttonId === "ok") {
+                            	 store.reload();
+                             }
+                         }
+                     });
+            		 
+                 },
+	             failure: function(batch){
+                        Ext.MessageBox.show({
+	                         title: "错误",
+	                         msg:Ext.decode(batch.operations[0].response.responseText).message,
+	                         icon: Ext.MessageBox.ERROR,
+	                         buttons: Ext.MessageBox.OK
+                        });  
+	
+	             }
+    		 });
+    		 
+    		
     	}else{
     		 Ext.MessageBox.show({
                  title: '提示',

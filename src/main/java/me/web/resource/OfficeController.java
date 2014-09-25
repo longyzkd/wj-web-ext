@@ -5,11 +5,11 @@
  *******************************************************************************/
 package me.web.resource;
 
+import java.util.List;
 import java.util.Map;
 
 import me.entity.Office;
 import me.repository.common.Page;
-import me.service.docShared.DocSharedService;
 import me.service.resource.ResourceService;
 import me.utils.DataWrapper;
 import me.utils.ExtJSReturn;
@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springside.modules.mapper.JsonMapper;
 
+import com.fasterxml.jackson.databind.JavaType;
 import com.google.common.collect.Maps;
 
 
@@ -44,7 +46,7 @@ import com.google.common.collect.Maps;
 public class OfficeController extends CommonController{
 
 	private static Logger logger = LoggerFactory.getLogger(OfficeController.class);
-	
+	private static JsonMapper mapper = JsonMapper.nonDefaultMapper();
 
 	@Autowired
 	private ResourceService service;
@@ -58,20 +60,31 @@ public class OfficeController extends CommonController{
 		return ExtJSReturn.listToMap(page);
 	}
 	@RequestMapping(value="delete",method = RequestMethod.POST)
-	public @ResponseBody Object delete(@RequestBody DataWrapper<Office> office)  {
+	public @ResponseBody Object delete(@RequestBody String officesJson)  {
 		try{
-//			service.del(office);
 			
-			Map<String,Object> modelMap = Maps.newHashMap();
-			modelMap.put("success", true);
-			return modelMap;
+			JavaType beanListType = mapper.contructCollectionType(List.class, Office.class);
+			List<Office> beanList = mapper.fromJson(wrap(officesJson), beanListType);
+//			service.del(offices.getRoot());
+			service.del(beanList);
+			
+			return ExtJSReturn.mapOK("刪除成功");
+			
+//			throw new Exception();
 
 		} catch (Exception e) {//TODO 做成过滤器
-			logger.error("删除出错");
-			return ExtJSReturn.mapError("删除出错");
+			logger.error(e.getMessage());
+			return ExtJSReturn.mapError("系统错误");
 		}
 	}
 	
+	private String wrap(String s){
+		if( s.charAt(0)== '['  ){
+			return s;
+		}else{
+			return "["+s+"]";
+		}
+	}
 	
 }
 

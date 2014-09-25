@@ -15,7 +15,12 @@ Ext.define('DEMO.model.OfficeListModel', {
 			totalProperty	: 'totalCount',
 			successProperty	: 'success'
 		},
-		 
+		writer: {
+            type: 'json',
+            writeAllFields: true,
+            encode: false
+//            root: 'root'
+        },
         api: {
         	read : 'sys/office/list',
             create : 'sys/office/add',
@@ -32,7 +37,16 @@ Ext.define('DEMO.model.OfficeListModel', {
         extraParams :{//用来排序
         	orderBy:'officeCode ,name'
         },
-       
+        listeners: {
+            exception: function(proxy, response, operation){
+                Ext.MessageBox.show({
+                    title: '系统错误',
+                    msg: Ext.decode(response.responseText).message,
+                    icon: Ext.MessageBox.ERROR,
+                    buttons: Ext.Msg.OK
+                });
+            }
+        }
 
 	}	
 	

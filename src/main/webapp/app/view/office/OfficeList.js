@@ -80,7 +80,9 @@ Ext.define('DEMO.view.office.OfficeList' ,{
             xtype: 'pagingtoolbar',
             store: 'OfficeListStore',   // same store GridPanel is using
             displayInfo: true,
-            displayMsg: 'Displaying  {0} - {1} of {2}',
+            displayMsg: '显示  {0} - {1} of {2}',
+            afterPageText :'总共 {0} 页',
+            beforePageText :'页',
             emptyMsg: "没有记录"
         }];
 
