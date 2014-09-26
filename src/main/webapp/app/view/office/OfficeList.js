@@ -27,26 +27,16 @@ Ext.define('DEMO.view.office.OfficeList' ,{
                         	xtype:'actioncolumn',
                         	items:[{
                         		iconCls: 'icon-edit',
-                        		tooltip: '编辑',
-                        		action:'edit'/*,
+                        		tooltip: '编辑'
+                        		/*,
                         		handler: function(grid, rowIndex, colIndex) {
                         			var rec = grid.getStore().getAt(rowIndex);
                         			alert("Edit " + rec.get('firstname'));
                         		}*/
                         	},'-',{
-                        		iconCls: 'icon-del',
-                        		tooltip: '删除',
-                        		handler: function(grid, rowIndex, colIndex) {
-                        			var rec = grid.getStore().getAt(rowIndex);
-                        			alert("Edit " + rec.get('firstname'));
-                        		}
-                        	},'-',{
-                        		iconCls: 'icon-save',
-                        		tooltip: '查看',
-                        		handler: function(grid, rowIndex, colIndex) {
-                        			var rec = grid.getStore().getAt(rowIndex);
-                        			alert("Edit " + rec.get('firstname'));
-                        		}
+                        		iconCls: 'icon-view',
+                        		tooltip: '查看'
+                        		
                         	}] 
                         }
                         	

@@ -97,6 +97,7 @@ public class OfficeController extends CommonController{
 			
 		} catch (Exception e) {//TODO 做成过滤器
 			logger.error(e.getMessage());
+			e.printStackTrace();
 			return ExtJSReturn.mapError("系统错误");
 		}
 	}

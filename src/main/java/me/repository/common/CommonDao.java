@@ -225,6 +225,7 @@ public class CommonDao<T> {
 			}
 			// 插入前执行方法
 			if (StringUtils.isBlank((String)id)){
+//			if (id==null ){	//id为Long
 				for (Method method : entity.getClass().getMethods()){
 					PrePersist pp = method.getAnnotation(PrePersist.class);
 					if (pp != null){
@@ -250,6 +251,9 @@ public class CommonDao<T> {
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		}
+//		catch (Exception e) { //catch住  不会回滚
+//			e.printStackTrace();
+//		}
 		getSession().saveOrUpdate(entity);
 	}
 	
@@ -661,6 +665,18 @@ public class CommonDao<T> {
 			dc.add(c);
 		}
 		return dc;
+	}
+
+	/**
+	 * 
+	 * @param beanClazz 类名
+	 * @param property 属性名
+	 * @param val 值
+	 * @return
+	 */
+	public <E> List<E> findBy( String beanClazz,String property,Object val) {
+		return find("from "+beanClazz + " where "+ property +" = :p1 ",
+				new Parameter(val));
 	}
 	
 	// -------------- Hibernate search --------------

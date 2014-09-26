@@ -98,12 +98,8 @@ Ext.define('DEMO.controller.OfficeListController', {
     },
     //窗口
     add: function(button) {
-        var editWin = Ext.widget('OfficeEdit').show();
-//        editWin.params= {ss:1};
-//        editWin.on('show',function(){
-//        	editWin.title='ss';
-//        });
-//        editWin.show();
+        var editWin = Ext.widget('OfficeEdit') .show();
+        editWin.setTitle('新增部门');
         
     },
     //真正的保存
@@ -113,16 +109,17 @@ Ext.define('DEMO.controller.OfficeListController', {
             record = form.getRecord(),
             values = form.getValues();
         
+        var OfficeListStore = this.getOfficeListStoreStore();
 		if (values.id > 0){//edit
 			record.set(values);
 		} else{
 			record = Ext.create('DEMO.model.OfficeListModel');
 			record.set(values);
 //			record.setId(0);
+			OfficeListStore.add(record);
 			
-		    if(form.isValid( )){
-		    	var OfficeListStore = this.getOfficeListStoreStore();
-		    	OfficeListStore.add(record);
+		}
+		 if(form.isValid( )){
 		    	OfficeListStore.sync({
 	                success: function(batch)   {
 		               	 Ext.MessageBox.show({
@@ -142,40 +139,36 @@ Ext.define('DEMO.controller.OfficeListController', {
 	   		 	});
 	        	
 	        }
-			
-		}
     
     },
     onAction: function(view,cell,row,col,e){
-        //console.log(this.getActioncolumn(),arguments, e.getTarget())
         var m = e.getTarget().className.match(/\bicon-(\w+)\b/)
         if(m){
             //选择该列
             this.getOfficeList().getView().getSelectionModel().select(row,false)
             switch(m[1]){
                 case 'edit':
-//                    this.getGrid().getPlugin('rowediting').startEdit({colIdx:col,rowIdx:row})
-                	edit(this.getOfficeList(),this.getOfficeListStoreStore().getAt(row));
+                	var record = this.getOfficeListStoreStore().getAt(row);
+                	var editWin = Ext.widget('OfficeEdit').show();
+                	editWin.setTitle('修改部门');
+                	if(record){
+                		editWin.down('form').loadRecord(record);
+                	}
                     break;
-                case 'delete':
-//                    var record = this.getGrid().store.getAt(row)
-//                    this.deleteRecord([record])
+                case 'view':
+                	var record = this.getOfficeListStoreStore().getAt(row);
+                	var editWin = Ext.widget('OfficeEdit').show();
+                	editWin.setTitle('查看部门');
+                	if(record){
+                		editWin.down('form').loadRecord(record);
+                		editWin.down('form').disable();
+                		editWin.removeDocked();
+                	}
                     break;
+                    
             }
         }
     }
 
 });
 
- function edit (record) {
-	var editWin = Ext.widget('OfficeEdit').show();
-//  editWin.params= {ss:1};
-//  editWin.on('show',function(){
-//  	editWin.title='ss';
-//  });
-//  editWin.show();
-	
-	if(record){
-		editWin.down('form').loadRecord(record);
-	}
-}

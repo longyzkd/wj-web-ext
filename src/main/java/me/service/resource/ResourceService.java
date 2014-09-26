@@ -67,4 +67,8 @@ public class ResourceService {
 		officeDao.save(office);
 		
 	}
+	public <E> List<E> getEntityBy(String beanClazz,String property, Object val) {
+		return menuDao.findBy(beanClazz,property,val);
+		
+	}
 }

@@ -24,9 +24,9 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/ext/resources/css/ext-all.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/app.css">
 
-    <script type="text/javascript" src="${ctx}/ext/ext-all.js"></script>
-    <script type="text/javascript" src="${ctx}/common.js"></script>
+    <script type="text/javascript" src="${ctx}/ext/ext-all-debug.js"></script>
     <script type="text/javascript" src="${ctx}/app.js"></script>
+    <script type="text/javascript" src="${ctx}/common.js"></script>
     
     
     <script type="text/javascript">
@@ -46,7 +46,7 @@
 	    					// 调用回调函数
 	    				}
 	    			});
-	    	return false;
+	    	//return false;
 	    };
     </script>
     

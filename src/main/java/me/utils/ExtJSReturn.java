@@ -49,6 +49,17 @@ public class ExtJSReturn {
 		map.put("success", true);
 		return map;
 	}
+	/**
+	 * 验证
+	 * @param T
+	 * @return
+	 */
+	public static <T> Map<String, Object> mapValidate(T T) {
+		Map<String, Object> map = Maps.newHashMap();
+		map.put("root", T);
+		map.put("success", true);
+		return map;
+	}
 	
 	
 	/**
