@@ -5,6 +5,8 @@
  *******************************************************************************/
 package me.repository.office;
 
+import java.util.List;
+
 import me.entity.Office;
 import me.repository.common.CommonDao;
 import me.repository.common.Page;
@@ -29,6 +31,16 @@ public class OfficeDao extends CommonDao<Office>  {
 		return find(pageObj, detachedCriteria);
 	}
 
+	
+	public List<Office> findOfficesBy(String id) {
+		DetachedCriteria  detachedCriteria =  DetachedCriteria.forClass(Office.class);
+		if(!StringUtils.isEmpty(id)){
+			detachedCriteria.add(Restrictions.eq("parentId", Long.valueOf(id)));
+		}else{
+			detachedCriteria.add(Restrictions.isNull("parentId"));
+		}
+		return find(detachedCriteria);
+	};
 	
 
 

@@ -28,6 +28,7 @@ public class MenuDao extends CommonDao<Menu>  {
 		StringBuilder hql  =  new StringBuilder();
 		
 		hql.append(" select m from Menu m ,User u ,Role r , UserRole ur ,RoleMenu rm where u.id=:p1 and u.id = ur.userId and ur.roleId = r.id and r.id = rm.roleId and rm.menuId = m.id ");
+//		hql.append(" and m.parentId is null" );
 		hql.append(" order by m.sort");
 		return find(hql.toString(), new Parameter(userId));
 	}
@@ -39,6 +40,7 @@ public class MenuDao extends CommonDao<Menu>  {
 						.addOrder(Order.asc("sort"));
 		return find(detachedCriteria);
 	}
+
 
 	
 

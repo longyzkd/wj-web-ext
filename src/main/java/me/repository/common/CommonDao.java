@@ -678,6 +678,19 @@ public class CommonDao<T> {
 		return find("from "+beanClazz + " where "+ property +" = :p1 ",
 				new Parameter(val));
 	}
+	/**
+	 * 值不等于val的集合
+	 * @param beanClazz
+	 * @param property
+	 * @param val
+	 * @return
+	 */
+	public <E> List<E> findExcept( String beanClazz,String property,Object val,Object rawValue) {
+		
+		String hql = " from "+beanClazz+"  where id not in ( select id  from "+beanClazz+" where  "+property+" = :p1 ) and "+property+" =:p2";
+		return find(hql,new Parameter(rawValue,val));
+				
+	}
 	
 	// -------------- Hibernate search --------------
 	

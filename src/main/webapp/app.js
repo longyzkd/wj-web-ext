@@ -18,7 +18,8 @@ Ext.application({
     controllers: [
 		'LayoutController',
 		'DocSharedListController',
-		'OfficeListController'
+		'OfficeListController',
+		'UserListController'
     ],
     autoCreateViewport	: false,
 

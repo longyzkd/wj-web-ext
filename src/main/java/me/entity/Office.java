@@ -35,7 +35,14 @@ public class Office extends DataEntity {
 	 */
 	private String spellCode;
 	
+	private String leaf;
 	
+	public String getLeaf() {
+		return leaf;
+	}
+	public void setLeaf(String leaf) {
+		this.leaf = leaf;
+	}
 	public String getSpellCode() {
 		return spellCode;
 	}

@@ -1,6 +1,6 @@
-Ext.define('DEMO.store.OfficeListStore', {
+Ext.define('DEMO.store.UserListStore', {
     extend	: 'Ext.data.Store',
-	model	: 'DEMO.model.OfficeListModel',
+	model	: 'DEMO.model.UserListModel',
 
 	pageSize	: pageSize,
 	autoLoad	: false

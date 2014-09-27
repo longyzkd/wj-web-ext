@@ -5,10 +5,17 @@
  *******************************************************************************/
 package me.repository.account;
 
+import java.util.List;
+
+import me.entity.Menu;
+import me.entity.Office;
 import me.entity.User;
 import me.repository.common.CommonDao;
+import me.repository.common.Page;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 
@@ -23,5 +30,16 @@ public class UserDao extends CommonDao<User>  {
 		
 		
 		
-	};
+	}
+
+	public Page<User> findUsers(Page<User> page, User user) {
+
+		DetachedCriteria  detachedCriteria =  DetachedCriteria.forClass(User.class);
+		if(!StringUtils.isBlank(user.getName())){
+			detachedCriteria.add(Restrictions.eq("name", user.getName()));
+		}
+		return find(page, detachedCriteria);
+	
+	}
+
 }

@@ -45,12 +45,13 @@ public class ValidateController {
 	 * @param beanClazz
 	 * @param property
 	 * @param val 参数暂仅支持String
+	 * @param action 新增还是修改
 	 * @return
 	 */
 	@RequestMapping(value="checkunique",method = RequestMethod.POST)
-	public @ResponseBody Object checkunique(String beanClazz,String property,String val )  {
+	public @ResponseBody Object checkunique(String beanClazz,String property,String val , String rawValue ,String action)  {
 		try{
-			boolean exist = CollectionUtils.isEmpty(service.getEntityBy(beanClazz,property,val))?false:true;
+			boolean exist = CollectionUtils.isEmpty(service.getEntityBy(beanClazz,property,val,rawValue,action))?false:true;
 			return ExtJSReturn.mapValidate(exist);
 //			throw new Exception();
 			

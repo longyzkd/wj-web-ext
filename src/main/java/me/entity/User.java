@@ -5,27 +5,22 @@
  *******************************************************************************/
 package me.entity;
 
-import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import me.entity.common.IdEntity;
+import me.entity.common.DataEntity;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.common.collect.ImmutableList;
 
 @Entity
 @Table(name = "sys_user")
-public class User extends IdEntity {
+public class User extends DataEntity {
 	
 	
 	private String loginName;
@@ -38,9 +33,42 @@ public class User extends IdEntity {
 	
 	private String salt;
 	
-	private String roles;
+	/**
+	 * 所属部门
+	 */
+	private Long officeId;
 	
-	private Date registerDate;
+	private String email;
+	
+	private String phone;
+	
+	
+	
+	
+
+	public Long getOfficeId() {
+		return officeId;
+	}
+
+	public void setOfficeId(Long officeId) {
+		this.officeId = officeId;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
 	@Column(name="login_Name")
 	@NotBlank
@@ -64,7 +92,7 @@ public class User extends IdEntity {
 	@Column(name="password")
 	// 不持久化到数据库，也不显示在Restful接口的属性.
 	@Transient
-	@JsonIgnore
+//	@JsonIgnore
 	public String getPlainPassword() {
 		return plainPassword;
 	}
@@ -88,31 +116,13 @@ public class User extends IdEntity {
 	public void setSalt(String salt) {
 		this.salt = salt;
 	}
-	@Column(name="roles")
-	public String getRoles() {
-		return roles;
-	}
 
-	public void setRoles(String roles) {
-		this.roles = roles;
-	}
-
-	@Transient
-	@JsonIgnore
-	public List<String> getRoleList() {
-		// 角色列表在数据库中实际以逗号分隔字符串存储，因此返回不能修改的List.
-		return ImmutableList.copyOf(StringUtils.split(roles, ","));
-	}
-	@Column(name="register_Date")
-	// 设定JSON序列化时的日期格式
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
-	public Date getRegisterDate() {
-		return registerDate;
-	}
-
-	public void setRegisterDate(Date registerDate) {
-		this.registerDate = registerDate;
-	}
+//	@Transient
+//	@JsonIgnore
+//	public List<String> getRoleList() {
+//		// 角色列表在数据库中实际以逗号分隔字符串存储，因此返回不能修改的List.
+//		return ImmutableList.copyOf(StringUtils.split(roles, ","));
+//	}
 
 	@Override
 	public String toString() {

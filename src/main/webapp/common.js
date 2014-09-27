@@ -1,3 +1,52 @@
+Ext.apply(Ext.form.VTypes, {  
+    password : function(val, field) {// val指这里的文本框值，field指这个文本框组件，大家要明白这个意思  
+        if (field.confirmTo) {// confirmTo是我们自定义的配置参数，一般用来保存另外的组件的id值  
+            var pwd = Ext.getCmp(field.confirmTo);// 取得confirmTo的那个id的值  
+            return (val == pwd.getValue());  
+        }  
+        return true;  
+    } ,
+    passwordText:'密码不一致',
+    checkunique : function(val, field) {
+    	console.log(field);
+        if (!val) {
+            return true;
+        }
+        var exist = false;
+        Ext.Ajax.request({
+			url : 'validate/checkunique',// 获取面板的地址
+			params : {
+				beanClazz:field.beanClazz,
+				property:field.property,
+				val : val,
+				rawValue:field.myrawValue,
+				action:field.action
+			},
+			async : false,//同步执行,为了争取返回exist，必须同步
+			method:'post',
+            success: function(response){
+            	var requestSuccess = Ext.JSON.decode(response.responseText).success;
+            	if(requestSuccess){
+            		exist = Ext.JSON.decode(response.responseText).root;
+            	}else{
+            		 Ext.MessageBox.show({
+                         title: '系统错误',
+                         msg: Ext.decode(response.responseText).message,
+                         icon: Ext.MessageBox.ERROR,
+                         buttons: Ext.Msg.OK
+                     });
+            	}
+            	
+            },
+            failure: function(response){}
+        });
+        return !exist;
+    },
+    checkuniqueText:'已经存在'  
+});  
+
+
+
 
 
 /**
@@ -92,49 +141,7 @@ function toggleEnabled(items, action)
     });
 }
 
-Ext.apply(Ext.form.VTypes, {  
-    password : function(val, field) {// val指这里的文本框值，field指这个文本框组件，大家要明白这个意思  
-        if (field.confirmTo) {// confirmTo是我们自定义的配置参数，一般用来保存另外的组件的id值  
-            var pwd = Ext.get(field.confirmTo);// 取得confirmTo的那个id的值  
-            return (val == pwd.getValue());  
-        }  
-        return true;  
-    } ,
-    passwordText:'密码不一致',
-    checkunique : function(val, field) {
-        if (!val) {
-            return true;
-        }
-        var exist = false;
-        Ext.Ajax.request({
-			url : 'validate/checkunique',// 获取面板的地址
-			params : {
-				beanClazz:field.beanClazz,
-				property:field.property,
-				val : val
-			},
-			async : false,//同步执行,为了争取返回exist，必须同步
-			method:'post',
-            success: function(response){
-            	var requestSuccess = Ext.JSON.decode(response.responseText).success;
-            	if(requestSuccess){
-            		exist = Ext.JSON.decode(response.responseText).root;
-            	}else{
-            		 Ext.MessageBox.show({
-                         title: '系统错误',
-                         msg: Ext.decode(response.responseText).message,
-                         icon: Ext.MessageBox.ERROR,
-                         buttons: Ext.Msg.OK
-                     });
-            	}
-            	
-            },
-            failure: function(response){}
-        });
-        return !exist;
-    },
-    checkuniqueText:'已经存在'  
-});  
+
 
    
 

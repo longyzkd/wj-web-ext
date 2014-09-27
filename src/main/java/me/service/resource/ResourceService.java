@@ -8,6 +8,7 @@ import me.repository.common.Page;
 import me.repository.menu.MenuDao;
 import me.repository.office.OfficeDao;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,8 +68,14 @@ public class ResourceService {
 		officeDao.save(office);
 		
 	}
-	public <E> List<E> getEntityBy(String beanClazz,String property, Object val) {
-		return menuDao.findBy(beanClazz,property,val);
+	public <E> List<E> getEntityBy(String beanClazz,String property, Object val,Object rawValue,String action) {
+		if(StringUtils.isEmpty(action)){
+			
+			return menuDao.findBy(beanClazz,property,val);
+		}else if("edit".equals(action)){
+			return menuDao.findExcept(beanClazz,property,val,rawValue);
+		}
+		return null;
 		
 	}
 }

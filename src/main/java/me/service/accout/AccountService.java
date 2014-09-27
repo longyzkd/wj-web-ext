@@ -7,20 +7,20 @@ package me.service.accout;
 
 import java.util.List;
 
+import me.entity.Office;
 import me.entity.User;
 import me.repository.account.UserDao;
+import me.repository.common.Page;
+import me.repository.office.OfficeDao;
 import me.service.accout.ShiroDbRealm.ShiroUser;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
-import org.hibernate.service.spi.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springside.modules.security.utils.Digests;
-import org.springside.modules.utils.Clock;
 import org.springside.modules.utils.Encodes;
 
 /**
@@ -41,7 +41,9 @@ public class AccountService {
 	
 	@Autowired
 	private UserDao userDao;
-	private Clock clock = Clock.DEFAULT;
+	
+	@Autowired
+	private OfficeDao officeDao;
 
 	@Transactional(readOnly=true)
 	public User findUserByLoginName(String loginName) {
@@ -70,7 +72,21 @@ public class AccountService {
 
 	
 
-	public void setClock(Clock clock) {
-		this.clock = clock;
+
+
+	public Page<User> getUsers(Page<User> page, User user) {
+		return userDao.findUsers(page,user);
+	}
+
+
+	public List<Office> getOfficeNodesBy(String id) {
+		return officeDao.findOfficesBy(id);
+	}
+
+
+	public void create(User user) {
+		entryptPassword(user);
+		userDao.save(user);
+		
 	}
 }
