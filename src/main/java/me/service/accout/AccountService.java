@@ -6,6 +6,7 @@
 package me.service.accout;
 
 import java.util.List;
+import java.util.Map;
 
 import me.entity.Office;
 import me.entity.User;
@@ -20,8 +21,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import org.springside.modules.security.utils.Digests;
 import org.springside.modules.utils.Encodes;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 /**
  * 用户管理类.
@@ -88,5 +93,42 @@ public class AccountService {
 		entryptPassword(user);
 		userDao.save(user);
 		
+	}
+
+	public void del(User u) {
+		if(u != null && u.getId()!=null){
+			userDao.delete(u.getId());
+		}else{
+			throw new RuntimeException();
+		}
+		
+	}
+	public void del(List<User> beanList) {
+			if(!CollectionUtils.isEmpty(beanList)){
+				for(User user:beanList){
+					del(user);
+				}
+			}
+			
+		
+	}
+
+
+	public List<Map<String, Object>> getOfficeNodes() {
+		List<Office> list =  officeDao.findAll();
+		if(CollectionUtils.isEmpty(list)){
+			return Lists.newArrayList();
+		}
+		
+		List<Map<String, Object>> mapList = Lists.newArrayList();
+		for (int i=0; i<list.size(); i++){
+			Office e = list.get(i);
+			Map<String, Object> map = Maps.newHashMap();
+			map.put("id", e.getId());
+			map.put("parentId", e.getParentId()==null?-1:e.getParentId());
+			map.put("name", e.getName());
+			mapList.add(map);
+		}
+		return mapList;
 	}
 }

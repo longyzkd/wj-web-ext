@@ -28,6 +28,7 @@ public class OfficeDao extends CommonDao<Office>  {
 		if(!StringUtils.isBlank(office.getOfficeCode())){
 			detachedCriteria.add(Restrictions.eq("officeCode", office.getOfficeCode()));
 		}
+		detachedCriteria.add(Restrictions.isNotNull("parentId"));//政府  根节点 排除在外
 		return find(pageObj, detachedCriteria);
 	}
 

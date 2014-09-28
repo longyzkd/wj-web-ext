@@ -16,6 +16,7 @@ import javax.persistence.PreUpdate;
 import me.service.accout.ShiroDbRealm.ShiroUser;
 
 import org.apache.shiro.SecurityUtils;
+import org.hibernate.annotations.DynamicUpdate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -66,7 +67,8 @@ public abstract class DataEntity extends IdEntity implements Serializable {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
-	@Column(name="create_by")
+	@Column(name="create_by" , updatable=false)
+	
 	public String getCreateBy() {
 		return createBy;
 	}
@@ -74,7 +76,7 @@ public abstract class DataEntity extends IdEntity implements Serializable {
 	public void setCreateBy(String createBy) {
 		this.createBy = createBy;
 	}
-	@Column(name="create_date")
+	@Column(name="create_date", updatable=false)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
 	public Date getCreateDate() {
 		return createDate;

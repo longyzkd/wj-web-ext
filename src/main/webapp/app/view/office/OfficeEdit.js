@@ -5,11 +5,11 @@ Ext.define('DEMO.view.office.OfficeEdit', {
     extend: 'Ext.window.Window',
     alias : 'widget.OfficeEdit',
 
-    requires: ['Ext.form.Panel','Ext.form.field.Text'],
+    requires: ['Ext.form.Panel','Ext.form.field.Text','Ext.ux.TreePicker'],
 
     layout: 'fit',
     autoShow: true,
-    width: 280,
+    width: 500,
     modal: true,
     iconCls: 'icon-user',
     keys: {
@@ -48,6 +48,7 @@ Ext.define('DEMO.view.office.OfficeEdit', {
                         name : 'name',
                         fieldLabel: '部门名称',
                         maxLength :100,
+                        id:'name',
                         vtype:'checkunique',
                         beanClazz:'me.entity.Office',
                         property:'name',
@@ -59,11 +60,36 @@ Ext.define('DEMO.view.office.OfficeEdit', {
                         maxLength :50
                     },
                     {
-                        xtype: 'textfield',
-                        name : 'spellCode',
-                        fieldLabel: '拼音码',
-                        maxLength :50,
-                        vtype :'alpha' 
+            			xtype: 'treepicker',
+            			fieldLabel: '上一级部门',
+            			displayField: 'text',
+            			valueField:'id',
+            			name:'parentId',
+            			minPickerHeight: 200,
+            			store:Ext.create("Ext.data.TreeStore", {
+            				rootVisible:false,
+            				root:{id:0,text:'政府'},
+//        					defaultRootId : 0, // 默认的根节点id
+        					fields : ['id',{name:'text',mapping:'name'},{name : "leaf",type : "boolean"}],
+        					proxy : {
+        						type : "ajax", // 获取方式
+        						url : "sys/user/getOfficeNodesOf", // 获取树节点的地址
+        						reader			: {
+        							type			: 'json',
+        							root			: 'root',
+        							successProperty	: 'success'
+        						},
+        					},
+        					clearOnLoad : true,
+        					nodeParam : "id"// 设置传递给后台的参数名,值是树节点的id属性
+        				})
+            		},
+                    {
+                    	xtype: 'textfield',
+                    	name : 'spellCode',
+                    	fieldLabel: '拼音码',
+                    	maxLength :50,
+                    	vtype :'alpha' 
                     },
                     {
                         xtype: 'textfield',

@@ -38,6 +38,9 @@ public class UserDao extends CommonDao<User>  {
 		if(!StringUtils.isBlank(user.getName())){
 			detachedCriteria.add(Restrictions.eq("name", user.getName()));
 		}
+		if(!StringUtils.isBlank(user.getLoginName())){
+			detachedCriteria.add(Restrictions.eq("loginName", user.getLoginName()));
+		}
 		return find(page, detachedCriteria);
 	
 	}

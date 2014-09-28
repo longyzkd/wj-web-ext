@@ -48,6 +48,8 @@
 	    			});
 	    	//return false;
 	    };
+	    
+	    var officeTree= convert(Ext.decode('${officeTree}'));
     </script>
     
 </head>

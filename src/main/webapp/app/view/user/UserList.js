@@ -20,12 +20,9 @@ Ext.define('DEMO.view.user.UserList' ,{
                            }
                         },
                         { text: '用户名称', dataIndex: 'name', flex: 1 },
-//                        { text: '登陆名', dataIndex: 'name', flex: 1 },
-//                        { text: '密码', dataIndex: 'officeCode', flex: 1 },
-//                        { text: '确认密码', dataIndex: 'spellCode', flex: 1 },
-                        { text: '所属部门', dataIndex: 'spellCode', flex: 1 },
-                        { text: '电话', dataIndex: 'spellCode', flex: 1 },
-                        { text: 'email', dataIndex: 'spellCode', flex: 1 },
+                        { text: '所属部门', dataIndex: 'officeId', flex: 1 },
+                        { text: '电话', dataIndex: 'phone', flex: 1 },
+                        { text: 'email', dataIndex: 'email', flex: 1 },
                         
                         { text: '操作',
                         	xtype:'actioncolumn',
@@ -48,13 +45,13 @@ Ext.define('DEMO.view.user.UserList' ,{
     		       '-',
     		       {text:'删除所选',iconCls:'icon-del',action:'del'},
     		       '->',
-    		       '用户名称',{
+		       '用户名称',{
                 xtype    : 'textfield',
                 name     : 'name',
                 emptyText: '请输入'
             },'登陆名',{
                 xtype    : 'textfield',
-                name     : 'officeCode',
+                name     : 'loginName',
                 emptyText: '请输入'
             },{
                 text: '查询',

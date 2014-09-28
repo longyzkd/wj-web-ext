@@ -6,12 +6,14 @@
 package me.web.account;
 
 import java.util.List;
+import java.util.Map;
 
 import me.entity.Office;
 import me.entity.User;
 import me.repository.common.Page;
 import me.service.accout.AccountService;
 import me.utils.ExtJSReturn;
+import me.utils.StringUtils;
 import me.web.CommonController;
 
 import org.slf4j.Logger;
@@ -67,21 +69,21 @@ public class UserController extends CommonController{
 		
 		return ExtJSReturn.listToMap(offices);
 	}
-//	@RequestMapping(value="delete",method = RequestMethod.POST)
-//	public @ResponseBody Object delete(@RequestBody String usersJson)  {
-//		try{
-//			
-//			JavaType beanListType = mapper.contructCollectionType(List.class, Office.class);
-//			List<User> beanList = mapper.fromJson(wrap(usersJson), beanListType);
-//			service.del(beanList);
-//			return ExtJSReturn.mapOK("刪除成功");
-////			throw new Exception();
-//
-//		} catch (Exception e) {//TODO 做成过滤器
-//			logger.error(e.getMessage());
-//			return ExtJSReturn.mapError("系统错误");
-//		}
-//	}
+	@RequestMapping(value="delete",method = RequestMethod.POST)
+	public @ResponseBody Object delete(@RequestBody String usersJson)  {
+		try{
+			
+			JavaType beanListType = mapper.contructCollectionType(List.class, User.class);
+			List<User> beanList = mapper.fromJson(StringUtils.wrap(usersJson), beanListType);
+			service.del(beanList);
+			return ExtJSReturn.mapOK("刪除成功");
+//			throw new Exception();
+
+		} catch (Exception e) {//TODO 做成过滤器
+			logger.error(e.getMessage());
+			return ExtJSReturn.mapError("系统错误");
+		}
+	}
 	@RequestMapping(value="create",method = RequestMethod.POST)
 	public @ResponseBody Object create(@RequestBody User user)  {
 		try{
@@ -111,13 +113,7 @@ public class UserController extends CommonController{
 		}
 	}
 //	
-//	private String wrap(String s){
-//		if( s.charAt(0)== '['  ){
-//			return s;
-//		}else{
-//			return "["+s+"]";
-//		}
-//	}
+//	
 	
 }
 

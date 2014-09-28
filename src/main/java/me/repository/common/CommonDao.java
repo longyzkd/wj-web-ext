@@ -224,8 +224,8 @@ public class CommonDao<T> {
 				}
 			}
 			// 插入前执行方法
-			if (StringUtils.isBlank((String)id)){
-//			if (id==null ){	//id为Long
+//			if (StringUtils.isBlank((String)id)){
+			if (id==null ){	//id为Long
 				for (Method method : entity.getClass().getMethods()){
 					PrePersist pp = method.getAnnotation(PrePersist.class);
 					if (pp != null){

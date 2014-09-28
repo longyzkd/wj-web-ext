@@ -152,6 +152,8 @@ Ext.define('DEMO.controller.OfficeListController', {
                 	var editWin = Ext.widget('OfficeEdit').show();
                 	editWin.setTitle('修改部门');
                 	if(record){
+                		Ext.apply(Ext.getCmp('name'), {action:'edit'}, {});
+                		Ext.apply(Ext.getCmp('name'), {myrawValue:record.get('name')}, {});
                 		editWin.down('form').loadRecord(record);
                 	}
                     break;

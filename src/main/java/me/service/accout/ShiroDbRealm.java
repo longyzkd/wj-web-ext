@@ -6,11 +6,14 @@
 package me.service.accout;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
 import me.entity.User;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -18,17 +21,18 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
-import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.apache.shiro.web.session.HttpServletSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springside.modules.mapper.JsonMapper;
 import org.springside.modules.utils.Encodes;
 
 import com.google.common.base.Objects;
 
 public class ShiroDbRealm extends AuthorizingRealm {
-
+	private static JsonMapper mapper = JsonMapper.nonDefaultMapper();
 	@Autowired
 	protected AccountService accountService;
 
@@ -40,6 +44,11 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
 		User user = accountService.findUserByLoginName(token.getUsername());
 		if (user != null) {
+			//折中方法
+			List<Map<String, Object>> offices = accountService.getOfficeNodes();
+			
+			SecurityUtils.getSubject().getSession().setAttribute("officeTree",mapper.toJson(offices));;
+			
 			byte[] salt = Encodes.decodeHex(user.getSalt());
 			return new SimpleAuthenticationInfo(new ShiroUser(user.getId(), user.getLoginName(), user.getName()),
 					user.getPassword(), ByteSource.Util.bytes(salt), getName());

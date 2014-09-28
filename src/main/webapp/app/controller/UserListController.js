@@ -43,16 +43,18 @@ Ext.define('DEMO.controller.UserListController', {
     },
     query:function( e, eOpts){
     	var name = e.up('toolbar').down('[name=name]').getValue();
-    	 this.getOfficeListStoreStore().load({
+    	var loginName = e.up('toolbar').down('[name=loginName]').getValue();
+    	 this.getUserListStoreStore().load({
     		 params:{
-    			 	name: name
+    			 	name: name,
+    			 	loginName:loginName
     			  } 
     	 });
     },
     del:function(){
-    	var grid = this.getOfficeList(),
+    	var grid = this.getUserList(),
     	record = grid.getSelectionModel().getSelection(), 
-        store = this.getOfficeListStoreStore();
+        store = this.getUserListStoreStore();
 
     	if(record && record.length){
     		 store.remove(record);

@@ -1,4 +1,9 @@
-Ext.apply(Ext.form.VTypes, {  
+Ext.apply(Ext.form.VTypes, { 
+	
+	 mobile:function (value, field) {
+         return /^(((13[0-9]{1})|159|153)+\d{8})$/.test(value);
+     },
+     mobileText:'手机格式不正确',
     password : function(val, field) {// val指这里的文本框值，field指这个文本框组件，大家要明白这个意思  
         if (field.confirmTo) {// confirmTo是我们自定义的配置参数，一般用来保存另外的组件的id值  
             var pwd = Ext.getCmp(field.confirmTo);// 取得confirmTo的那个id的值  
@@ -45,6 +50,32 @@ Ext.apply(Ext.form.VTypes, {
     checkuniqueText:'已经存在'  
 });  
 
+
+/**
+ * 把simple json数组转成复杂数组
+ * @param array
+ * @returns
+ */
+function convert(array){
+    var map = {};
+    for(var i = 0; i < array.length; i++){
+        var obj = array[i];
+        obj.children= [];
+
+        map[obj.id] = obj;
+
+        var parent = obj.parentId || '-';
+        if(!map[parent]){
+            map[parent] = {
+            		children: []
+            };
+        }
+        map[parent].children.push(obj);
+    }
+
+    return map['-'].children;
+
+}
 
 
 

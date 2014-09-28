@@ -123,7 +123,7 @@ Ext.define('DEMO.view.user.UserEdit', {
                         fieldLabel: '电话',
                         allowBlank: true,
                         maxLength :200,
-                        vtype: 'alphanum'
+                        vtype: 'mobile'
                     },
                     {
                         xtype: 'textfield',
