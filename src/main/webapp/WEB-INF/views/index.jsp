@@ -49,7 +49,8 @@
 	    	//return false;
 	    };
 	    
-	    var officeTree= convert(Ext.decode('${officeTree}'));
+	    //var officeTree= convert(Ext.decode('${officeTree}'));
+	    
     </script>
     
 </head>

@@ -5,7 +5,7 @@ Ext.define('DEMO.controller.UserListController', {
     models	: ['UserListModel'],
 
     views	: [
-		'user.UserList','user.UserEdit'
+		'user.UserList','user.UserEdit','user.PwdEdit'
     ],
     refs: [{
 	        ref: 'UserList',
@@ -32,6 +32,9 @@ Ext.define('DEMO.controller.UserListController', {
             },
             'UserEdit button[action=save]':{
             	click:this.save
+            },
+            'PwdEdit button[action=save]':{
+            	click:this.pwdSave
             }
             
         });
@@ -141,6 +144,42 @@ Ext.define('DEMO.controller.UserListController', {
 	        }
     
     },
+    //真正的保存
+    pwdSave: function(button) {
+    	var win    = button.up('window'),
+    	form   = win.down('form'),
+    	record = form.getRecord(),
+    	values = form.getValues();
+    	
+    	var UserListStore = this.getUserListStoreStore();
+    	if (values.id > 0){//edit
+    		record.set(values);
+    	}
+    	if(form.isValid( )){
+    		form.getForm().submit({
+    		    clientValidation: true,
+    		    url: 'sys/user/updatePwd',
+    		    success: function(form, action) {
+    				Ext.MessageBox.show({
+    					title: '提示',
+    					msg: Ext.decode(action.response.responseText).message,
+    					icon: Ext.MessageBox.INFO,
+    					buttons: Ext.Msg.OK,
+    					fn: function(buttonId) {
+    						if (buttonId === "ok") {
+    							win.close();
+    							UserListStore.reload();
+    						}
+    					}
+    				});
+    				
+    			},
+    		    failure: function(form, action) {}
+    		});
+    		
+    	}
+    	
+    },
     onAction: function(view,cell,row,col,e){
         var m = e.getTarget().className.match(/\bicon-(\w+)\b/)
         if(m){
@@ -155,6 +194,14 @@ Ext.define('DEMO.controller.UserListController', {
 //                		editWin.down('form').getForm().findField('loginName').set({action:'edit'});
                 		Ext.apply(Ext.getCmp('loginName'), {action:'edit'}, {});
                 		Ext.apply(Ext.getCmp('loginName'), {myrawValue:record.get('loginName')}, {});
+                		editWin.down('form').loadRecord(record);
+                	}
+                    break;
+                case 'updatePwd':
+                	var record = this.getUserListStoreStore().getAt(row);
+                	var editWin = Ext.widget('PwdEdit').show();
+                	editWin.setTitle('修改密码');
+                	if(record){
                 		editWin.down('form').loadRecord(record);
                 	}
                     break;

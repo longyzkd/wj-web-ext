@@ -13,7 +13,6 @@ Ext.apply(Ext.form.VTypes, {
     } ,
     passwordText:'密码不一致',
     checkunique : function(val, field) {
-    	console.log(field);
         if (!val) {
             return true;
         }

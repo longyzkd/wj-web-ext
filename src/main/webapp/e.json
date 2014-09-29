@@ -1,0 +1,58 @@
+[{
+    "id" : 0,
+    "text" : "政府",
+    "leaf" : false,
+    "iconCls" : null,
+    "children" : [ {
+      "id" : 19,
+      "text" : "11",
+      "leaf" : false,
+      "iconCls" : null,
+      "children" : [ ]
+    }, {
+      "id" : 2,
+      "text" : "房管局",
+      "leaf" : false,
+      "iconCls" : null,
+      "children" : [ {
+        "id" : 22,
+        "text" : "tt",
+        "leaf" : false,
+        "iconCls" : null,
+        "children" : [ ]
+      } ]
+    }, {
+      "id" : 3,
+      "text" : "民政局",
+      "leaf" : false,
+      "iconCls" : null,
+      "children" : [ ]
+    }, {
+      "id" : 4,
+      "text" : "公安局",
+      "leaf" : false,
+      "iconCls" : null,
+      "children" : [ {
+        "id" : 5,
+        "text" : "刑侦一队",
+        "leaf" : false,
+        "iconCls" : null,
+        "children" : [ ]
+      }, {
+        "id" : 6,
+        "text" : "刑侦二队",
+        "leaf" : false,
+        "iconCls" : null,
+        "children" : [ ]
+      } ]
+    }, {
+      "id" : 20,
+      "text" : "122222333",
+      "leaf" : false,
+      "iconCls" : null,
+      "children" : [ ]
+    } ]
+  }
+  ]
+  
+  

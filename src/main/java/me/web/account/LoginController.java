@@ -46,8 +46,8 @@ public class LoginController {
 	// 不会执行
 	@RequestMapping(value = "welcome" ,method = RequestMethod.GET)
 	public String welcome( Model model) {//用这个返回首页 ext请求controller js会加上前缀login 导致404
-		List<Map<String, Object>> offices = service.getOfficeNodes();
-		model.addAttribute("officeTree", offices);
+//		List<Map<String, Object>> offices = service.getOfficeNodes();
+//		model.addAttribute("officeTree", offices);
 		return "index";
 	}
 

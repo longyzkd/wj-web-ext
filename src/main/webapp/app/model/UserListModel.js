@@ -1,8 +1,18 @@
 Ext.define('DEMO.model.UserListModel', {
     extend	: 'Ext.data.Model',
     fields	: [
-		'id','loginName','name','plainPassword','password','officeId','phone','email'
-		//dataEntity内容略过
+		'id','loginName','name','plainPassword','password','officeId','phone','email',
+		 'remarks',	
+		 'createBy',	
+		 {
+			  name:'createDate'	
+		  },
+		 'updateBy',	
+		 {
+			  name:'updateDate'	
+			  
+		  },'salt'
+		 
 	],
 
 	proxy	: {

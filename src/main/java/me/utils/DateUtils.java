@@ -25,7 +25,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 	 * 得到当前日期字符串 格式（yyyy-MM-dd）
 	 */
 	public static String getDate() {
-		return getDate("yyyy-MM-dd");
+		return getDate("yyyy-MM-dd HH:mm:ss");
 	}
 	
 	/**

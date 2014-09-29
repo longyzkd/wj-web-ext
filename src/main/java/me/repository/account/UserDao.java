@@ -5,17 +5,16 @@
  *******************************************************************************/
 package me.repository.account;
 
-import java.util.List;
-
-import me.entity.Menu;
-import me.entity.Office;
 import me.entity.User;
 import me.repository.common.CommonDao;
 import me.repository.common.Page;
+import me.repository.common.Parameter;
+import me.service.accout.ShiroDbRealm.ShiroUser;
+import me.utils.DateUtils;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 
@@ -45,4 +44,12 @@ public class UserDao extends CommonDao<User>  {
 	
 	}
 
+	public void updatePwd(User user) {
+		ShiroUser u = (ShiroUser)SecurityUtils.getSubject().getPrincipal();
+		Parameter p = new Parameter(user.getPassword(),DateUtils.parseDate(DateUtils.getDate()),u.loginName,user.getId());
+		update("update User set password = :p1 ,updateDate=:p2 ,updateBy=:p3  where id = :p4", p);
+		
+	}
+
+	
 }

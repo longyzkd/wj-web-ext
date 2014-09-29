@@ -29,6 +29,9 @@ Ext.define('DEMO.view.user.UserList' ,{
                         	items:[{
                         		iconCls: 'icon-edit',
                         		tooltip: '编辑'
+                        	},'-',{
+                        		iconCls: 'icon-updatePwd',
+                        		tooltip: '修改密码'
                         	}] 
                         }
                         	
@@ -44,6 +47,7 @@ Ext.define('DEMO.view.user.UserList' ,{
     		       {text:'新增用户',iconCls:'icon-add',action:'add'},
     		       '-',
     		       {text:'删除所选',iconCls:'icon-del',action:'del'},
+    		     
     		       '->',
 		       '用户名称',{
                 xtype    : 'textfield',

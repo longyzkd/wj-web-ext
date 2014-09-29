@@ -68,25 +68,47 @@ Ext.define('DEMO.view.user.UserEdit', {
             			valueField:'id',
             			name:'officeId',
             			minPickerHeight: 200,
-            			store:Ext.create("Ext.data.TreeStore", {
-        					defaultRootId : null, // 默认的根节点id
-        					fields : ['id',{name:'text',mapping:'name'},{name : "leaf",type : "boolean"}],
-        					root: {
-        						text: '政府',
-        						expanded: true
-        					},
-        					proxy : {
-        						type : "ajax", // 获取方式
-        						url : "sys/user/getOfficeNodesOf", // 获取树节点的地址
-        						reader			: {
-        							type			: 'json',
-        							root			: 'root',
-        							successProperty	: 'success'
-        						},
-        					},
-        					clearOnLoad : true,
-        					nodeParam : "id"// 设置传递给后台的参数名,值是树节点的id属性
-        				})
+//            			rootVisible:true,
+            			
+//            			store:Ext.create("Ext.data.TreeStore", {
+//        					defaultRootId : null, // 默认的根节点id
+//        					fields : ['id',{name:'text',mapping:'name'},{name : "leaf",type : "boolean"}],
+//        					root: {
+//        						text: '政府',
+//        						id:'0',
+//        						expanded: true
+//        					},
+//        					proxy : {
+//        						type : "ajax", // 获取方式
+//        						url : "sys/user/getOfficeNodesOf", // 获取树节点的地址
+//        						reader			: {
+//        							type			: 'json',
+//        							root			: 'root',
+//        							successProperty	: 'success'
+//        						},
+//        					},
+//        					clearOnLoad : true,
+//        					nodeParam : "id"// 设置传递给后台的参数名,值是树节点的id属性
+//        				})
+            			rootVisible:false,
+//            			store:Ext.create('Ext.data.TreeStore',{
+//            				fields: ['id','text'],
+//            				root:{children:officeTree}
+//            			}),
+            			store: Ext.create('Ext.data.TreeStore',{
+            				fields: ['id','text'],
+            				root: {
+            					expanded: true
+            				},
+            				proxy: {
+            					type: 'ajax',
+//            					url: "e.json",
+            					url: "sys/user/getAllOfficeNodes",
+            					reader: {
+            						type: 'json'
+            					}
+            				}
+            			})
             		},
             		
                     {
@@ -99,23 +121,6 @@ Ext.define('DEMO.view.user.UserEdit', {
                         beanClazz:'me.entity.User',
                         property:'loginName'
                       
-                    },
-                    {
-                        xtype: 'textfield',
-                        inputType: 'password',
-                        name : 'plainPassword',
-                        fieldLabel: '密码',
-                        maxLength :10,
-                        id:'plainPassword'
-                    },
-                    {
-                        xtype: 'textfield',
-                        inputType: 'password',
-                        fieldLabel: '确认密码',
-                        maxLength :10,
-                        vtype:'password',
-                        confirmTo:'plainPassword'
-                        
                     },
                     {
                         xtype: 'textfield',

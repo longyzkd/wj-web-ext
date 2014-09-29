@@ -14,6 +14,7 @@ import me.repository.account.UserDao;
 import me.repository.common.Page;
 import me.repository.office.OfficeDao;
 import me.service.accout.ShiroDbRealm.ShiroUser;
+import me.utils.ExtTreeNode;
 
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
@@ -89,8 +90,20 @@ public class AccountService {
 	}
 
 
+	/**
+	 * 保存
+	 * @param user
+	 */
 	public void create(User user) {
 		entryptPassword(user);
+		userDao.save(user);
+		
+	}
+	/**
+	 * 修改
+	 * @param user
+	 */
+	public void update(User user) {
 		userDao.save(user);
 		
 	}
@@ -114,21 +127,42 @@ public class AccountService {
 	}
 
 
-	public List<Map<String, Object>> getOfficeNodes() {
+	public List<ExtTreeNode> getOfficeNodes() {
+//		public List<Map<String, Object>> getOfficeNodes() {
 		List<Office> list =  officeDao.findAll();
 		if(CollectionUtils.isEmpty(list)){
 			return Lists.newArrayList();
 		}
 		
-		List<Map<String, Object>> mapList = Lists.newArrayList();
+		List<ExtTreeNode> mapList = Lists.newArrayList();
+//		List<Map<String, Object>> mapList = Lists.newArrayList();
 		for (int i=0; i<list.size(); i++){
 			Office e = list.get(i);
-			Map<String, Object> map = Maps.newHashMap();
-			map.put("id", e.getId());
-			map.put("parentId", e.getParentId()==null?-1:e.getParentId());
-			map.put("name", e.getName());
-			mapList.add(map);
+			//树
+//			Map<String, Object> map = Maps.newHashMap();
+//			map.put("id", String.valueOf(e.getId()));
+//			map.put("parentId", String.valueOf(e.getParentId()==null?"":e.getParentId()));
+//			map.put("text", e.getName());
+			ExtTreeNode node = new ExtTreeNode();
+			node.setId(e.getId());
+			node.setParentId(e.getParentId());
+			node.setText(e.getName());
+			mapList.add(node);
+//			mapList.add(map);
 		}
 		return mapList;
 	}
+
+
+	public void updatePwd(User user) {
+		entryptPassword(user);
+		userDao.updatePwd(user);
+		
+	}
+
+
+//	public void update(User user) {
+//		userDao.updateUser(user);
+//		
+//	}
 }

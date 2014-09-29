@@ -73,6 +73,9 @@
 .icon-edit {
 	background-image: url(../static/icons/edit.png) !important;
 }
+.icon-updatePwd {
+	background-image: url(../static/icons/edit.png) !important;
+}
 
 .icon-refresh {
 	background-image: url(../static/icons/refresh.gif) !important;
@@ -141,6 +144,9 @@
 }
 .icon-key-edit{
 	background-image: url(../static/icons/key_edit.png) !important;
+}
+.icon-updatePwd{
+	background-image: url(../static/icons/key.gif) !important;
 }
 .icon-version{
 	background-image: url(../static/icons/version.png) !important;

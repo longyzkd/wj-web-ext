@@ -12,6 +12,7 @@ Ext.define('Ext.ux.TreePicker', {
     triggerCls: Ext.baseCSSPrefix + 'form-arrow-trigger',
 
     config: {
+    	rootVisible:null,
         /**
          * @cfg {Ext.data.TreeStore} store
          * A tree store that the tree picker will be bound to
@@ -88,6 +89,8 @@ Ext.define('Ext.ux.TreePicker', {
                 maxHeight: me.maxPickerHeight,
                 manageHeight: false,
                 shadow: false,
+                //wj
+                rootVisible: me.rootVisible,
                 listeners: {
                     scope: me,
                     itemclick: me.onItemClick

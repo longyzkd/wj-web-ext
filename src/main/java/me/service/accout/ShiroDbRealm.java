@@ -44,10 +44,10 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
 		User user = accountService.findUserByLoginName(token.getUsername());
 		if (user != null) {
-			//折中方法
-			List<Map<String, Object>> offices = accountService.getOfficeNodes();
-			
-			SecurityUtils.getSubject().getSession().setAttribute("officeTree",mapper.toJson(offices));;
+//			//折中方法
+//			List<Map<String, Object>> offices = accountService.getOfficeNodes();
+//			
+//			SecurityUtils.getSubject().getSession().setAttribute("officeTree",mapper.toJson(offices));;
 			
 			byte[] salt = Encodes.decodeHex(user.getSalt());
 			return new SimpleAuthenticationInfo(new ShiroUser(user.getId(), user.getLoginName(), user.getName()),
