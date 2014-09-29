@@ -14,7 +14,7 @@ import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
 
 import me.service.accout.ShiroDbRealm.ShiroUser;
-import me.utils.ExtJSReturn;
+import me.utils.ExtUtils;
 import me.utils.Global;
 
 import org.apache.commons.lang3.StringEscapeUtils;

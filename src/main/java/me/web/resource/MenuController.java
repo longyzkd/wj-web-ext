@@ -10,7 +10,7 @@ import javax.servlet.ServletRequest;
 import me.service.accout.ShiroDbRealm.ShiroUser;
 import me.service.resource.ResourceService;
 import me.utils.Constants;
-import me.utils.ExtJSReturn;
+import me.utils.ExtUtils;
 import me.web.CommonController;
 
 import org.apache.shiro.SecurityUtils;
@@ -49,10 +49,10 @@ public class MenuController extends CommonController {
 
 		String view = request.getParameter("view");
 		if(Constants.TREE_VIEW.list.name().equals(view)){//面板
-			return ExtJSReturn.listToMap(service.getPanels(getCurrentUserId()));
+			return ExtUtils.listToMap(service.getPanels(getCurrentUserId()));
 		}else if(Constants.TREE_VIEW.node.name().equals(view)){//树
 			String id = request.getParameter("id");
-			return ExtJSReturn.listToMap(service.getNodes(id));
+			return ExtUtils.listToMap(service.getNodes(id));
 		}
 		
 		return null;

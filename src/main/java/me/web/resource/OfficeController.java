@@ -12,7 +12,7 @@ import me.entity.Office;
 import me.repository.common.Page;
 import me.service.resource.ResourceService;
 import me.utils.DataWrapper;
-import me.utils.ExtJSReturn;
+import me.utils.ExtUtils;
 import me.web.CommonController;
 
 import org.slf4j.Logger;
@@ -57,7 +57,7 @@ public class OfficeController extends CommonController{
 		page = service.getOffices(page,office);
 		
 		
-		return ExtJSReturn.listToMap(page);
+		return ExtUtils.listToMap(page);
 	}
 	@RequestMapping(value="delete",method = RequestMethod.POST)
 	public @ResponseBody Object delete(@RequestBody String officesJson)  {
@@ -66,12 +66,12 @@ public class OfficeController extends CommonController{
 			JavaType beanListType = mapper.contructCollectionType(List.class, Office.class);
 			List<Office> beanList = mapper.fromJson(wrap(officesJson), beanListType);
 			service.del(beanList);
-			return ExtJSReturn.mapOK("刪除成功");
+			return ExtUtils.mapOK("刪除成功");
 //			throw new Exception();
 
 		} catch (Exception e) {//TODO 做成过滤器
 			logger.error(e.getMessage());
-			return ExtJSReturn.mapError("系统错误");
+			return ExtUtils.mapError("系统错误");
 		}
 	}
 	@RequestMapping(value="create",method = RequestMethod.POST)
@@ -79,12 +79,12 @@ public class OfficeController extends CommonController{
 		try{
 			
 			service.create(office);
-			return ExtJSReturn.mapOK("新增成功");
+			return ExtUtils.mapOK("新增成功");
 //			throw new Exception();
 			
 		} catch (Exception e) {//TODO 做成过滤器
 			logger.error(e.getMessage());
-			return ExtJSReturn.mapError("系统错误");
+			return ExtUtils.mapError("系统错误");
 		}
 	}
 	@RequestMapping(value="edit",method = RequestMethod.POST)
@@ -92,13 +92,13 @@ public class OfficeController extends CommonController{
 		try{
 			
 			service.create(office);
-			return ExtJSReturn.mapOK("修改成功");
+			return ExtUtils.mapOK("修改成功");
 //			throw new Exception();
 			
 		} catch (Exception e) {//TODO 做成过滤器
 			logger.error(e.getMessage());
 			e.printStackTrace();
-			return ExtJSReturn.mapError("系统错误");
+			return ExtUtils.mapError("系统错误");
 		}
 	}
 	

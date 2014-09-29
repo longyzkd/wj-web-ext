@@ -7,7 +7,7 @@ package me.web;
 
 import me.entity.Office;
 import me.service.resource.ResourceService;
-import me.utils.ExtJSReturn;
+import me.utils.ExtUtils;
 import me.web.resource.OfficeController;
 
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
@@ -52,13 +52,13 @@ public class ValidateController {
 	public @ResponseBody Object checkunique(String beanClazz,String property,String val , String rawValue ,String action)  {
 		try{
 			boolean exist = CollectionUtils.isEmpty(service.getEntityBy(beanClazz,property,val,rawValue,action))?false:true;
-			return ExtJSReturn.mapValidate(exist);
+			return ExtUtils.mapValidate(exist);
 //			throw new Exception();
 			
 		} catch (Exception e) {//TODO 做成过滤器
 			logger.error(e.getMessage());
 			e.printStackTrace();
-			return ExtJSReturn.mapError("系统错误");
+			return ExtUtils.mapError("系统错误");
 		}
 	}
 }

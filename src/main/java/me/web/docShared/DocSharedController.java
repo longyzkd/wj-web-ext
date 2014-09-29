@@ -10,7 +10,7 @@ import java.util.Map;
 import javax.servlet.ServletRequest;
 
 import me.service.docShared.DocSharedService;
-import me.utils.ExtJSReturn;
+import me.utils.ExtUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,7 +52,7 @@ public class DocSharedController {
 	public @ResponseBody  Object list( Model model,
 			ServletRequest request) {
 
-		return ExtJSReturn.listToMap(service.getDocs());
+		return ExtUtils.listToMap(service.getDocs());
 
 	}
 }
