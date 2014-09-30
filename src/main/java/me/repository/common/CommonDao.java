@@ -297,13 +297,23 @@ public class CommonDao<T> {
 	}
 	
 	/**
-	 * 逻辑删除
+	 * deleteCasade
 	 * @param id
 	 * @param likeParentIds
 	 * @return
 	 */
 	public int deleteById(Serializable id, String likeParentIds){
 		return update("update "+entityClass.getSimpleName()+" set delFlag = '" + Constants.DEL_FLAG_DELETE + "' where id = :p1 or parentIds like :p2",
+				new Parameter(id, likeParentIds));
+	}
+	/**
+	 * 物理删除本身及其所有子节点
+	 * @param id
+	 * @param likeParentIds
+	 * @return
+	 */
+	public int deleteCasade(Serializable id, String likeParentIds){
+		return update("delete "+entityClass.getSimpleName()+ " where id = :p1 or parentIds like :p2",
 				new Parameter(id, likeParentIds));
 	}
 	

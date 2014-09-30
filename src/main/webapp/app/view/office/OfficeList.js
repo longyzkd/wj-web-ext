@@ -4,7 +4,7 @@ Ext.define('DEMO.view.office.OfficeList' ,{
 
     store: 'OfficeListStore',
 //    selModel:Ext.create('Ext.selection.CheckboxModel',{mode:"SIMPLE"}),
-    selModel:Ext.create('Ext.selection.RowModel',{mode:"SIMPLE"}),
+    selModel:Ext.create('Ext.selection.RowModel',{mode:"SINGLE"}),
     initComponent: function() {
         this.columns = [
                         { text: '序号', 

@@ -41,7 +41,8 @@ public class ResourceService {
 	}
 	public void del(Office office) {
 		if(office != null && office.getId()!=null){
-			officeDao.delete(office.getId());
+			officeDao.deleteCasade(office.getId(),"%,"+office.getId()+",%");
+//			officeDao.delete(office.getId());
 		}else{
 			throw new RuntimeException();
 		}

@@ -48,7 +48,10 @@ public class OfficeDao extends CommonDao<Office>  {
 
 	public List<Office> findByParentIdsLike(String parentIds) {
 		return find("from Office where parentIds like :p1", new Parameter(parentIds));
-	};
+	}
+
+
+	
 	
 
 

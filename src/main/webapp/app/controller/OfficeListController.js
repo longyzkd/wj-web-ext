@@ -56,7 +56,7 @@ Ext.define('DEMO.controller.OfficeListController', {
     	record = grid.getSelectionModel().getSelection(), 
         store = this.getOfficeListStoreStore();
 
-    	if(record && record.length){
+    	if(record && record.length && record.length==1 ){
     		 store.remove(record);
     		 store.sync({
                  success: function(batch) {
@@ -89,7 +89,7 @@ Ext.define('DEMO.controller.OfficeListController', {
     	}else{
     		 Ext.MessageBox.show({
                  title: '提示',
-                 msg: '请至少选择一条记录',
+                 msg: '请选择一条记录且最多一条',
                  icon: Ext.MessageBox.INFO,
                  buttons: Ext.Msg.OK
              });
