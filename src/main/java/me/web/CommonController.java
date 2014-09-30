@@ -31,6 +31,8 @@ import org.springside.modules.beanvalidator.BeanValidators;
 
 
 /**
+ * 如果是get，需要修改 Tomcat根式目录的 conf/server.xml文件中，找<Connector port="8080" />，在里面加<Connector port="8080" uRIEncoding="utf-8" />
+ * 
  * 控制器支持类
  * @author ThinkGem
  * @version 2013-3-23

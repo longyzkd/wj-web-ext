@@ -35,10 +35,10 @@ public class UserDao extends CommonDao<User>  {
 
 		DetachedCriteria  detachedCriteria =  DetachedCriteria.forClass(User.class);
 		if(!StringUtils.isBlank(user.getName())){
-			detachedCriteria.add(Restrictions.eq("name", user.getName()));
+			detachedCriteria.add(Restrictions.like("name", "%"+user.getName()+"%"));
 		}
 		if(!StringUtils.isBlank(user.getLoginName())){
-			detachedCriteria.add(Restrictions.eq("loginName", user.getLoginName()));
+			detachedCriteria.add(Restrictions.like("loginName", "%"+user.getLoginName()+"%"));
 		}
 		return find(page, detachedCriteria);
 	

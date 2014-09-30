@@ -24,10 +24,10 @@ public class OfficeDao extends CommonDao<Office>  {
 	public Page<Office> findOffices(Page<Office> pageObj, Office office) {
 		DetachedCriteria  detachedCriteria =  DetachedCriteria.forClass(Office.class);
 		if(!StringUtils.isBlank(office.getName())){
-			detachedCriteria.add(Restrictions.eq("name", office.getName()));
+			detachedCriteria.add(Restrictions.like("name", "%"+office.getName()+"%"));
 		}
 		if(!StringUtils.isBlank(office.getOfficeCode())){
-			detachedCriteria.add(Restrictions.eq("officeCode", office.getOfficeCode()));
+			detachedCriteria.add(Restrictions.like("officeCode", "%"+office.getOfficeCode()+"%"));
 		}
 		detachedCriteria.add(Restrictions.isNotNull("parentId"));//政府  根节点 排除在外
 //		detachedCriteria.add(Restrictions.isNotNull("parent.id"));//政府  根节点 排除在外
