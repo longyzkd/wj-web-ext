@@ -99,6 +99,10 @@ Ext.define('DEMO.controller.OfficeListController', {
     //窗口
     add: function(button) {
         var editWin = Ext.widget('OfficeEdit') .show();
+       var parentStore =Ext.getStore('parentStore');
+        parentStore.getProxy().setExtraParam("action",'add');
+        parentStore .load();//parentStore 会加载两次 没办法
+        
         editWin.setTitle('新增部门');
         
     },
@@ -150,10 +154,17 @@ Ext.define('DEMO.controller.OfficeListController', {
                 case 'edit':
                 	var record = this.getOfficeListStoreStore().getAt(row);
                 	var editWin = Ext.widget('OfficeEdit').show();
+                	 var parentStore= Ext.getStore('parentStore'); // Ext.create('store.odon.DiagnosticoStore');
+                	 parentStore.getProxy().setExtraParam("officeId", record.get('id'));
+                	 parentStore.load();
+                     
+                     
                 	editWin.setTitle('修改部门');
                 	if(record){
+                		console.log(record);
                 		Ext.apply(Ext.getCmp('name'), {action:'edit'}, {});
                 		Ext.apply(Ext.getCmp('name'), {myrawValue:record.get('name')}, {});
+//                		Ext.apply(editWin, {myparentId:1}, {});
                 		editWin.down('form').loadRecord(record);
                 	}
                     break;

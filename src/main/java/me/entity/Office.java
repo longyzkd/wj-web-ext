@@ -8,9 +8,17 @@ package me.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 import me.entity.common.DataEntity;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 
 @Entity
@@ -18,6 +26,9 @@ import me.entity.common.DataEntity;
 public class Office extends DataEntity {
 	
 	private Long parentId;
+	
+//	private Office parent;	// 父级编号
+	private String parentIds ; // 所有父级编号
 	
 	private String name;
 	private String type;
@@ -37,6 +48,31 @@ public class Office extends DataEntity {
 	
 	private String leaf;
 	
+	public String getParentIds() {
+		return parentIds;
+	}
+	public void setParentIds(String parentIds) {
+		this.parentIds = parentIds;
+	}
+	
+	public Long getParentId() {
+		return parentId;
+	}
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
+	}
+	
+	//不适合ext
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name="parent_id")
+//	@NotFound(action = NotFoundAction.IGNORE)
+//	@NotNull
+//	public Office getParent() {
+//		return parent;
+//	}
+//	public void setParent(Office parent) {
+//		this.parent = parent;
+//	}
 	public String getLeaf() {
 		return leaf;
 	}
@@ -55,13 +91,13 @@ public class Office extends DataEntity {
 	public void setOfficeCode(String officeCode) {
 		this.officeCode = officeCode;
 	}
-	@Column(name="parent_id")
-	public Long getParentId() {
-		return parentId;
-	}
-	public void setParentId(Long parentId) {
-		this.parentId = parentId;
-	}
+//	@Column(name="parent_id")
+//	public Long getParentId() {
+//		return parentId;
+//	}
+//	public void setParentId(Long parentId) {
+//		this.parentId = parentId;
+//	}
 	@Column(name="name")
 	public String getName() {
 		return name;

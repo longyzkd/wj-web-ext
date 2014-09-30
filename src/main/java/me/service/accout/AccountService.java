@@ -127,7 +127,7 @@ public class AccountService {
 	}
 
 
-	public List<ExtTreeNode> getOfficeNodes() {
+	public List<ExtTreeNode> getAllOfficeNodes() {
 //		public List<Map<String, Object>> getOfficeNodes() {
 		List<Office> list =  officeDao.findAll();
 		if(CollectionUtils.isEmpty(list)){
@@ -145,8 +145,10 @@ public class AccountService {
 //			map.put("text", e.getName());
 			ExtTreeNode node = new ExtTreeNode();
 			node.setId(e.getId());
+//			node.setParentId(e.getParent().getId());
 			node.setParentId(e.getParentId());
 			node.setText(e.getName());
+			node.setLeaf(Boolean.parseBoolean(e.getLeaf()));
 			mapList.add(node);
 //			mapList.add(map);
 		}
@@ -158,6 +160,20 @@ public class AccountService {
 		entryptPassword(user);
 		userDao.updatePwd(user);
 		
+	}
+
+
+	public List<Office> getAllOffices() {
+		return  officeDao.findAll();
+	}
+
+
+	public Office getOffice(Long parentId) {
+		// TODO Auto-generated method stub
+		if(parentId ==null){
+			return null;
+		}
+		return officeDao.get(parentId);
 	}
 
 

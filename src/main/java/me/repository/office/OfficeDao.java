@@ -10,6 +10,7 @@ import java.util.List;
 import me.entity.Office;
 import me.repository.common.CommonDao;
 import me.repository.common.Page;
+import me.repository.common.Parameter;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
@@ -29,6 +30,7 @@ public class OfficeDao extends CommonDao<Office>  {
 			detachedCriteria.add(Restrictions.eq("officeCode", office.getOfficeCode()));
 		}
 		detachedCriteria.add(Restrictions.isNotNull("parentId"));//政府  根节点 排除在外
+//		detachedCriteria.add(Restrictions.isNotNull("parent.id"));//政府  根节点 排除在外
 		return find(pageObj, detachedCriteria);
 	}
 
@@ -41,6 +43,11 @@ public class OfficeDao extends CommonDao<Office>  {
 			detachedCriteria.add(Restrictions.isNull("parentId"));
 		}
 		return find(detachedCriteria);
+	}
+
+
+	public List<Office> findByParentIdsLike(String parentIds) {
+		return find("from Office where parentIds like :p1", new Parameter(parentIds));
 	};
 	
 

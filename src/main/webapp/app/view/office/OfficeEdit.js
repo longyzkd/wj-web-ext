@@ -7,6 +7,7 @@ Ext.define('DEMO.view.office.OfficeEdit', {
 
     requires: ['Ext.form.Panel','Ext.form.field.Text','Ext.ux.TreePicker'],
 
+    id:'OfficeEditWin',
     layout: 'fit',
     autoShow: true,
     width: 500,
@@ -23,6 +24,7 @@ Ext.define('DEMO.view.office.OfficeEdit', {
         this.items = [
             {
                 xtype: 'form',
+                id:'OfficeEdit',
                 padding: '5 5 0 5',
                 border: false,
                 style: 'background-color: #fff;',
@@ -65,24 +67,48 @@ Ext.define('DEMO.view.office.OfficeEdit', {
             			displayField: 'text',
             			valueField:'id',
             			name:'parentId',
+//            			name:'parent.id',
             			minPickerHeight: 200,
-            			store:Ext.create("Ext.data.TreeStore", {
-            				rootVisible:false,
-            				root:{id:0,text:'政府'},
-//        					defaultRootId : 0, // 默认的根节点id
-        					fields : ['id',{name:'text',mapping:'name'},{name : "leaf",type : "boolean"}],
-        					proxy : {
-        						type : "ajax", // 获取方式
-        						url : "sys/user/getOfficeNodesOf", // 获取树节点的地址
-        						reader			: {
-        							type			: 'json',
-        							root			: 'root',
-        							successProperty	: 'success'
-        						},
-        					},
-        					clearOnLoad : true,
-        					nodeParam : "id"// 设置传递给后台的参数名,值是树节点的id属性
-        				})
+//            			store:Ext.create("Ext.data.TreeStore", {
+//            				rootVisible:false,
+//            				root:{id:0,text:'政府'},
+////        					defaultRootId : 0, // 默认的根节点id
+//        					fields : ['id',{name:'text',mapping:'name'},{name : "leaf",type : "boolean"}],
+//        					proxy : {
+//        						type : "ajax", // 获取方式
+//        						url : "sys/user/getOfficeNodesOf", // 获取树节点的地址
+//        						reader			: {
+//        							type			: 'json',
+//        							root			: 'root',
+//        							successProperty	: 'success'
+//        						},
+//        					},
+//        					clearOnLoad : true,
+//        					nodeParam : "id"// 设置传递给后台的参数名,值是树节点的id属性
+//        				})
+            			rootVisible:false,
+            			store: Ext.create('Ext.data.TreeStore',{
+            				fields: ['id','text'],
+            				storeId:'parentStore',
+            				root: {
+            					expanded: true
+            				},
+            				proxy: {
+            					type: 'ajax',
+//            					url: "e.json",
+            					url: "sys/user/getAllOfficeNodesExceptFor",
+            					reader: {
+            						type: 'json'
+            					},
+            					scope:'this'
+//            					extraParams :{//用来排序
+//                					officeId:this.myparentId
+//                					officeId:Ext.ComponentQuery.query ('OfficeEdit').myparentId
+//                		        }
+            				}
+            				
+            			})
+            			
             		},
                     {
                     	xtype: 'textfield',

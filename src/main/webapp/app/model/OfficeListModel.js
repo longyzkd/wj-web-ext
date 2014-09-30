@@ -2,9 +2,19 @@ Ext.define('DEMO.model.OfficeListModel', {
     extend	: 'Ext.data.Model',
     fields	: [
 		'id','parentId','name','type','grade','address','zipCode','master','phone','fax','email','officeCode',
-		'spellCode'
+		'spellCode','parentIds'
 		//dataEntity内容略过
 	],
+//    fields	: [
+//		'id','name','type','grade','address','zipCode','master','phone','fax','email','officeCode',
+//		'spellCode'
+//		//dataEntity内容略过
+//	],
+//	 belongsTo: [{
+//         name: 'parent',
+//         model: 'DEMO.model.OfficeListModel',
+//         associationKey: 'parent'
+//     }],
 
 	proxy	: {
 		type			: 'ajax',

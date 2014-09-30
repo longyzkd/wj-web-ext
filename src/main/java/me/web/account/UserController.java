@@ -5,17 +5,15 @@
  *******************************************************************************/
 package me.web.account;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import me.entity.Office;
 import me.entity.User;
 import me.repository.common.Page;
 import me.service.accout.AccountService;
-import me.utils.ExtUtils;
 import me.utils.ExtTreeNode;
+import me.utils.ExtUtils;
 import me.utils.StringUtils;
 import me.web.CommonController;
 
@@ -26,6 +24,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springside.modules.mapper.JsonMapper;
 
@@ -79,13 +78,35 @@ public class UserController extends CommonController{
 	@RequestMapping(value="getAllOfficeNodes" ,method = RequestMethod.GET)
 	public @ResponseBody  Object getAllOfficeNodes () {
 		
-		List<ExtTreeNode> offices = service.getOfficeNodes();
-		
+		List<ExtTreeNode> offices = service.getAllOfficeNodes();
 		
 		return ExtUtils.toComplexJson(offices);
 	        
-	        
-	        
+		
+	}
+	@RequestMapping(value="getAllOfficeNodesExceptFor" ,method = RequestMethod.GET)
+	public @ResponseBody  Object getAllOfficeNodesExceptFor (@RequestParam(required=false) Long officeId,String action) {
+		
+		List<Office> list = service.getAllOffices();
+		List<ExtTreeNode> mapList = Lists.newArrayList();
+		for (int i=0; i<list.size(); i++){
+			Office e = list.get(i);
+			Office parent = service.getOffice(e.getParentId());
+			String parentIds = e.getParentIds()==null?"":e.getParentIds();
+			//新增就显示所有节点，编辑部显示本节点以及子节点
+			if ("add".equals(action)|| (officeId!=null && !officeId.equals(e.getId()) && parentIds.indexOf(","+officeId+",")==-1)){
+//				if (officeId == null || (officeId!=null && !officeId.equals(e.getId()) && e.getParentIds().indexOf(","+officeId+",")==-1)){
+				ExtTreeNode node = new ExtTreeNode();
+				node.setId(e.getId());
+				node.setParentId(parent==null?null:parent.getId());
+				node.setText(e.getName());
+				node.setLeaf(Boolean.parseBoolean(e.getLeaf()));
+				mapList.add(node);
+			}
+		}
+		
+		return ExtUtils.toComplexJson(mapList);
+		
 		
 	}
 //	private Map<String, Object> toComplexJson(List<ExtTreeNode> offices) {

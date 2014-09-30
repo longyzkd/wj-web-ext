@@ -134,7 +134,8 @@ public class ExtUtils {
 	
 	/**
 	 * 转成ext格式的树
-	 * @param offices
+	 * @author wj
+	 * @param src
 	 * @return
 	 */
 	public static String toComplexJson(List<ExtTreeNode> src) {

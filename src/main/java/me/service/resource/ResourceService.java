@@ -64,8 +64,30 @@ public class ResourceService {
 		}
 		
 	}
+//	public void create(Office office) {
+//		officeDao.save(office);
+//		
+//	}
 	public void create(Office office) {
+//		office.setParent(officeDao.get(office.getParent().getId()));
+		Office parent = officeDao.get(office.getParentId());
+		String oldParentIds = office.getParentIds(); // 获取修改前的parentIds，用于更新子节点的parentIds
+		office.setParentIds(parent.getParentIds()+parent.getId()+",");
+		officeDao.clear();
 		officeDao.save(office);
+		// 更新子节点 parentIds
+		List<Office> list = officeDao.findByParentIdsLike("%,"+office.getId()+",%");
+		if(!CollectionUtils.isEmpty(list)){
+			
+			for (Office e : list){
+				e.setParentIds(e.getParentIds().replace(oldParentIds, office.getParentIds()));
+				officeDao.save(e);
+			}
+		}
+		//UserUtils.removeCache(UserUtils.CACHE_office_LIST);
+		
+		
+		
 		
 	}
 	public <E> List<E> getEntityBy(String beanClazz,String property, Object val,Object rawValue,String action) {
