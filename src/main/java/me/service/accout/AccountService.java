@@ -83,7 +83,7 @@ public class AccountService {
 	public Page<User> getUsers(Page<User> page, User user) {
 		Page<User> p = userDao.findUsers(page,user);
 		List<User> users = p.getList();
-		for(User u :users){//TODO 后台hql transformer
+		for(User u :users){//TODO 后台hql transformer criteria关联查询
 			u.setOfficeName(officeDao.get(u.getOfficeId()).getName());
 		}
 		return p;
