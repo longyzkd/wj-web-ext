@@ -20,7 +20,8 @@ Ext.define('DEMO.view.user.UserList' ,{
                            }
                         },
                         { text: '用户名称', dataIndex: 'name', flex: 1 },
-                        { text: '所属部门', dataIndex: 'officeId', flex: 1 },
+                        { text: '所属部门', dataIndex: 'officeName', flex: 1 },
+//                        { text: '所属部门', dataIndex: 'officeId', flex: 1 },
                         { text: '电话', dataIndex: 'phone', flex: 1 },
                         { text: 'email', dataIndex: 'email', flex: 1 },
                         

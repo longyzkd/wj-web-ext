@@ -37,6 +37,7 @@ public class User extends DataEntity {
 	 * 所属部门
 	 */
 	private Long officeId;
+	private String officeName;
 	
 	private String email;
 	
@@ -45,6 +46,15 @@ public class User extends DataEntity {
 	
 	
 	
+
+	@Transient
+	public String getOfficeName() {
+		return officeName;
+	}
+
+	public void setOfficeName(String officeName) {
+		this.officeName = officeName;
+	}
 
 	public Long getOfficeId() {
 		return officeId;

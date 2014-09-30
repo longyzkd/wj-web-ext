@@ -81,7 +81,12 @@ public class AccountService {
 
 
 	public Page<User> getUsers(Page<User> page, User user) {
-		return userDao.findUsers(page,user);
+		Page<User> p = userDao.findUsers(page,user);
+		List<User> users = p.getList();
+		for(User u :users){//TODO 后台hql transformer
+			u.setOfficeName(officeDao.get(u.getOfficeId()).getName());
+		}
+		return p;
 	}
 
 

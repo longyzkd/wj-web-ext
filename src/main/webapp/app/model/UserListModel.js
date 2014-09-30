@@ -1,7 +1,7 @@
 Ext.define('DEMO.model.UserListModel', {
     extend	: 'Ext.data.Model',
     fields	: [
-		'id','loginName','name','plainPassword','password','officeId','phone','email',
+		'id','loginName','name','plainPassword','password','officeId','officeName','phone','email',
 		 'remarks',	
 		 'createBy',	
 		 {
