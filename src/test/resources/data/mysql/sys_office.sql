@@ -1,0 +1,10 @@
+INSERT INTO `sys_office` VALUES (0, NULL, '政府', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '00', NULL, NULL);
+INSERT INTO `sys_office` VALUES (2, 0, '房管局', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2', '2', NULL, '0,');
+INSERT INTO `sys_office` VALUES (3, 0, '民政局', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '3', '3', NULL, '0,');
+INSERT INTO `sys_office` VALUES (4, 0, '公安局', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '4', '4', NULL, '0,');
+INSERT INTO `sys_office` VALUES (5, 4, '刑侦一队', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '5', '5', 'false', '4,0,');
+INSERT INTO `sys_office` VALUES (6, 4, '刑侦二队', NULL, NULL, '', NULL, NULL, '', NULL, '', NULL, NULL, 'admin', '2014-9-28 16:03:34', NULL, '6', 's', 'true', '4,0,');
+INSERT INTO `sys_office` VALUES (19, 22, '房管一局科室', '', '', '', '', '', '', '', '', 'admin', '2014-9-26 11:33:21', 'admin', '2014-9-30 09:10:01', NULL, '11', 'ss', NULL, '22,2,0,');
+INSERT INTO `sys_office` VALUES (20, 5, '一队队长', '', '', '', '', '', '', '', '', 'admin', '2014-9-26 15:35:39', 'admin', '2014-9-29 18:05:04', NULL, '2', 'asd', NULL, '5,4,0,');
+INSERT INTO `sys_office` VALUES (22, 2, '房管一局', '', '', '', '', '', '', '', '', 'admin', '2014-9-28 16:19:26', 'admin', '2014-9-28 16:20:00', NULL, 'tt', 't', NULL, '2,0,');
+INSERT INTO `sys_office` VALUES (24, 2, 's', '', '', '', '', '', '', '', '', 'admin', '2014-9-30 14:15:11', 'admin', '2014-9-30 14:16:18', NULL, 's', 's', NULL, '0,2,');
