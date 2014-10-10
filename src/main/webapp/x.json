@@ -1,0 +1,5 @@
+[
+       {"name":"name", "prompt":"Your name1" , "type":"textfield"},
+        {"name":"addr", "prompt":"Your stree1t address", "type":"textfield"},
+        {"name":"city", "prompt":"Your cit1y" , "type":"textfield"}
+    ]

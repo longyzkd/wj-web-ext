@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
+import me.entity.Zbx;
 import me.utils.Constants;
 
 import org.apache.commons.lang3.StringUtils;
@@ -145,6 +146,36 @@ public class CommonDao<T> {
         page.setList(query.list());
 		return page;
     }
+    /**
+     * 解决hql分组查询count不对，而且hql不支持from子查询
+     * @author wj
+     * @param page
+     * @param qlString
+     * @param parameter
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public <E> Page<E> findme(Page<E> page, String qlString, Parameter parameter){
+    	
+    	// order by
+    	String ql = qlString;
+    	if (StringUtils.isNotBlank(page.getOrderBy())){
+    		ql += " order by " + page.getOrderBy();
+    	}
+    	Query query = createQuery(ql, parameter); 
+    	// set page
+    	if (!page.isDisabled()){
+    		query.setFirstResult(page.getFirstResult());
+    		query.setMaxResults(page.getMaxResults()); 
+    	}
+    	page.setList(query.list());
+    	
+    	// get count
+    	if (!page.isDisabled() && !page.isNotCount()){
+    			page.setCount(page.getList().size());
+    	}
+    	return page;
+    }
     
 
     /**
@@ -155,7 +186,13 @@ public class CommonDao<T> {
 	public <E> List<E> find(String qlString){
 		return find(qlString, null);
 	}
-    
+	public <E>  List<E> findByHql(String qlString, Parameter parameter ,Class<?> resultClass){
+		return find(qlString, parameter,resultClass);
+	}
+	public <E>  List<E> findByHql(String qlString ,Class<?> resultClass){
+		return find(qlString, null,resultClass);
+	}
+	
     /**
 	 * QL 查询
 	 * @param qlString
@@ -167,6 +204,12 @@ public class CommonDao<T> {
 		Query query = createQuery(qlString, parameter);
 		return query.list();
 	}
+	@SuppressWarnings("unchecked")
+	public <E> List<E> find(String qlString, Parameter parameter,Class<?> resultClass){
+		Query query = createQuery(qlString, parameter,resultClass);
+		return query.list();
+	}
+	
 	
 	/**
 	 * QL 查询所有
@@ -349,6 +392,12 @@ public class CommonDao<T> {
 		setParameter(query, parameter);
 		return query;
 	}
+	public Query createQuery(String qlString, Parameter parameter,Class<?> resultClass){
+		Query query = getSession().createQuery(qlString);
+		setParameter(query, parameter);
+		setResultTransformer(query, resultClass);
+		return query;
+	}
 	
 	// -------------- SQL Query --------------
 
@@ -424,6 +473,47 @@ public class CommonDao<T> {
         page.setList(query.list());
 		return page;
     }
+    /**
+     * 嵌套查询count
+     * @author wj
+     * @param page
+     * @param sqlString
+     * @param parameter
+     * @param resultClass
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public <E> Page<E> findBySqlme(Page<E> page, String sqlString, Parameter parameter, Class<?> resultClass){
+    	// get count
+    	if (!page.isDisabled() && !page.isNotCount()){
+    		String countSqlString = "select count(*) from (" + (removeOrders(sqlString)+" ) as t");  
+//	        page.setCount(Long.valueOf(createSqlQuery(countSqlString, parameter).uniqueResult().toString()));
+    		Query query = createSqlQuery(countSqlString, parameter);
+    		List<Object> list = query.list();
+    		if (list.size() > 0){
+    			page.setCount(Long.valueOf(list.get(0).toString()));
+    		}else{
+    			page.setCount(list.size());
+    		}
+    		if (page.getCount() < 1) {
+    			return page;
+    		}
+    	}
+    	// order by
+    	String sql = sqlString;
+    	if (StringUtils.isNotBlank(page.getOrderBy())){
+    		sql += " order by " + page.getOrderBy();
+    	}
+    	SQLQuery query = createSqlQuery(sql, parameter); 
+    	// set page
+    	if (!page.isDisabled()){
+    		query.setFirstResult(page.getFirstResult());
+    		query.setMaxResults(page.getMaxResults()); 
+    	}
+    	setResultTransformer(query, resultClass);
+    	page.setList(query.list());
+    	return page;
+    }
 
 	/**
 	 * SQL 查询
@@ -495,6 +585,17 @@ public class CommonDao<T> {
 				query.setResultTransformer(Transformers.TO_LIST);
 			}else{
 				query.addEntity(resultClass);
+			}
+		}
+	}
+	private void setResultTransformer(Query query, Class<?> resultClass){
+		if (resultClass != null){
+			if (resultClass == Map.class){
+				query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+			}else if (resultClass == List.class){
+				query.setResultTransformer(Transformers.TO_LIST);
+			}else{
+				query.setResultTransformer(Transformers.aliasToBean(resultClass));
 			}
 		}
 	}
