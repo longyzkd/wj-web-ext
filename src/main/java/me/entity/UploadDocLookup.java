@@ -23,7 +23,7 @@ import me.entity.common.IdEntity;
  */
 @Entity
 @Table(name = "base_upload_lookup")
-public class UploadLookup extends IdEntity {
+public class UploadDocLookup extends IdEntity {
 	
 	
 	/**
@@ -34,8 +34,13 @@ public class UploadLookup extends IdEntity {
 	 * 文档名称
 	 */
 	private String wdMc;
-	
+	/**
+	 * 上传时间
+	 */
 	private Date createDate;
+	/**
+	 * 上传人
+	 */
 	private String createBy;
 	public String getZbxMc() {
 		return zbxMc;

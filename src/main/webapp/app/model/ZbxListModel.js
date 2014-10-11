@@ -42,7 +42,7 @@ Ext.define('DEMO.model.ZbxListModel', {
         //directionParam: "dir"
 //        simpleSortMode	: true,
         extraParams :{//用来排序,sql用法
-        	orderBy:'zbx_Mc'
+        	orderBy:'zbxMc'
         },
         listeners: {
             exception: function(proxy, response, operation){

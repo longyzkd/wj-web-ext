@@ -20,7 +20,9 @@ Ext.application({
 		'DocSharedListController',
 		'OfficeListController',
 		'UserListController',
-		'ZbxListController'
+		'ZbxListController',
+		'PermDataController'
+//		'AllDocController'
     ],
     autoCreateViewport	: false,
 
