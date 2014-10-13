@@ -17,11 +17,19 @@ import me.entity.common.IdEntity;
  *
  */
 @Entity
-@Table(name = "sys_user_role")
+@Table(name = "permission_doc_office")
 public class PermissionDocOffice extends IdEntity {
 	
 	private String wdMc;
+	private Long uploadId;
 	private Long officeId;
+	
+	public Long getUploadId() {
+		return uploadId;
+	}
+	public void setUploadId(Long uploadId) {
+		this.uploadId = uploadId;
+	}
 	public String getWdMc() {
 		return wdMc;
 	}

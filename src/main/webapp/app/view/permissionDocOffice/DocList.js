@@ -2,6 +2,7 @@ Ext.define('DEMO.view.permissionDocOffice.DocList' ,{
     extend: 'Ext.grid.Panel',
     alias : 'widget.DocList',
 
+    id:'DocList',
     store: 'PermDataDocListStore',
     selModel:Ext.create('Ext.selection.CheckboxModel',{mode:"SIMPLE"}),
 //    selModel:Ext.create('Ext.selection.RowModel',{mode:"SIMPLE"}),

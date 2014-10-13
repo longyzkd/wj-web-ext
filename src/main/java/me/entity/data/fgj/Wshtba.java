@@ -81,6 +81,18 @@ public class Wshtba extends DataEntity{
 	 * 文档名称
 	 */
 	private String wdMc;
+	
+	private Long uploadId;
+	
+	
+
+	public Long getUploadId() {
+		return uploadId;
+	}
+
+	public void setUploadId(Long uploadId) {
+		this.uploadId = uploadId;
+	}
 
 	public Long getXh() {
 		return xh;

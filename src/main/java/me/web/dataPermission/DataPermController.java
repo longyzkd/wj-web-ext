@@ -5,8 +5,11 @@
  *******************************************************************************/
 package me.web.dataPermission;
 
+import java.util.List;
+import java.util.Map;
+
+import me.entity.PermissionDocOffice;
 import me.entity.UploadDocLookup;
-import me.entity.Zbx;
 import me.repository.common.Page;
 import me.service.dataPermission.DataPermService;
 import me.utils.ExtUtils;
@@ -16,12 +19,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springside.modules.mapper.JsonMapper;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.JavaType;
 
 
 /**
@@ -56,6 +62,39 @@ public class DataPermController extends CommonController{
 		
 		
 		return ExtUtils.listToMap(page);
+	}
+	@RequestMapping(value="getPermited" ,method = RequestMethod.POST)
+	public @ResponseBody  Object getPermited(Long nodeId) {
+		try{
+			
+			List<UploadDocLookup> docs = service.getDocs(nodeId);
+			
+			return ExtUtils.toMap(docs);
+		}catch (Exception e) {
+			e.printStackTrace();
+			logger.error(e.getMessage());
+			return ExtUtils.mapError("系统错误");
+		}
+		
+		
+	}
+	
+	@RequestMapping(value="edit" ,method = RequestMethod.POST)
+	public @ResponseBody  Object edit(@RequestBody Map<String,Object> map) {
+		try {
+			Long officeId = Long.valueOf(""+map.get("officeId"));
+			
+			JavaType beanListType = mapper.contructCollectionType(List.class, UploadDocLookup.class);
+			List<UploadDocLookup>  docs  = mapper.fromJson((String)map.get("docsJson"), beanListType);
+			service.editDataPermission(officeId,docs);
+			
+			return ExtUtils.mapOK("编辑成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(e.getMessage());
+			return ExtUtils.mapError("系统错误");
+		}
+		
 	}
 	
 	

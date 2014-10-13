@@ -369,6 +369,12 @@ public class CommonDao<T> {
 		String hql = "delete from " +entityClass.getSimpleName()+" where id=:p1";
 		return createQuery(hql, new Parameter(id)).executeUpdate();
 	}
+	/**
+	 * 物理删除
+	 */
+	public void delete(T t){
+		getSession().delete(t);
+	}
 	
 	/**
 	 * 更新删除标记
