@@ -11,7 +11,7 @@ Ext.define('DEMO.model.ZbxListModel', {
 		 {
 			  name:'updateDate'	
 			  
-		  }
+		  },'officeId','officeName'
 	],
 
 	proxy	: {

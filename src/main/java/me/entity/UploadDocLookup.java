@@ -10,10 +10,14 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+import javax.persistence.Transient;
 
 import me.entity.common.IdEntity;
+import me.utils.DateUtils;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 /**
@@ -42,6 +46,15 @@ public class UploadDocLookup extends IdEntity {
 	 * 上传人
 	 */
 	private String createBy;
+	
+	private String status;
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getZbxMc() {
 		return zbxMc;
 	}
@@ -68,5 +81,35 @@ public class UploadDocLookup extends IdEntity {
 		this.createDate = createDate;
 	}
 	
+	private Long officeId;
+	public Long getOfficeId() {
+		return officeId;
+	}
+	public void setOfficeId(Long officeId) {
+		this.officeId = officeId;
+	}
 	
+	
+	private String from;
+	
+	private String to;
+	@Transient
+//	@DateTimeFormat(pattern="yyyy-MM-dd")  
+	public String getFrom() {
+		return from;
+	}
+	public void setFrom(String from) {
+		this.from = from;
+	}
+	@Transient
+//	@DateTimeFormat(pattern="yyyy-MM-dd")  
+	public String getTo() {
+		if(null==to){
+			return (DateUtils.getDate("yyyy-MM-dd")) ;
+		}
+		return to;
+	}
+	public void setTo(String to) {
+		this.to = to;
+	}
 }

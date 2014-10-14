@@ -6,11 +6,12 @@ import java.util.Map;
 import java.util.Set;
 
 import me.repository.common.Page;
-import me.web.account.UserController;
+import me.utils.Comboable.Combo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import org.springside.modules.mapper.JsonMapper;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -35,6 +36,21 @@ public class ExtUtils {
 	private static Logger logger = LoggerFactory.getLogger(ExtUtils.class);
 	
 	private static JsonMapper mapper = new JsonMapper(Include.ALWAYS);
+	
+	
+	public static List<Combo>  toCombo(List<? extends Comboable> src){
+		if(!CollectionUtils.isEmpty(src)){
+			List<Combo> result = Lists.newArrayList();
+			for(Comboable comboable : src){
+				Combo combo = new Combo();
+				combo.code = comboable.getCode();
+				combo.name = comboable.getName();
+				result.add(combo);
+			}
+			return result;
+		}
+		return null;
+	}
 	/**
 	 * 分页
 	 * @param T

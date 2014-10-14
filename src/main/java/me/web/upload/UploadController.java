@@ -5,7 +5,10 @@
  *******************************************************************************/
 package me.web.upload;
 
-import me.entity.User;
+import java.util.List;
+
+import me.entity.UploadDocLookup;
+import me.entity.Zbx;
 import me.repository.common.Page;
 import me.service.upload.UploadService;
 import me.utils.ExtUtils;
@@ -47,14 +50,27 @@ public class UploadController extends CommonController{
 	private UploadService service;
 
 	
-	
 	@RequestMapping(value="list" ,method = RequestMethod.GET)
-	public @ResponseBody  Object list(Page<User> page,User user) {
+	public @ResponseBody  Object list(Page<UploadDocLookup> page,UploadDocLookup doc) {
+
+		try {
+			page = service.getAllDocs(page, doc);
+			
+			
+			return ExtUtils.listToMap(page);
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+			return ExtUtils.mapError("系统错误");
+		}
+	}
+	@RequestMapping(value="getZbx" ,method = RequestMethod.GET)
+	public @ResponseBody  Object getZbx(String zbxName) {
 
 //		page = service.getUsers(page,user);
+		List<Zbx> data = service.getZbx(zbxName);
 		
-		
-		return ExtUtils.listToMap(page);
+		return ExtUtils.toMap(ExtUtils.toCombo(data));
 	}
 	
 	

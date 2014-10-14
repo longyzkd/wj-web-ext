@@ -21,7 +21,8 @@ Ext.application({
 		'OfficeListController',
 		'UserListController',
 		'ZbxListController',
-		'PermDataController'
+		'PermDataController',
+		'UploadController'
 //		'AllDocController'
     ],
     autoCreateViewport	: false,

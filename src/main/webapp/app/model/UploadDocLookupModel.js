@@ -4,7 +4,7 @@ Ext.define('DEMO.model.UploadDocLookupModel', {
 	           {
 				name : 'createDate'
 	           },
-	           'status' 
+	           'status','officeId' 
 	         ]
 
 	//autoLoad	: true,

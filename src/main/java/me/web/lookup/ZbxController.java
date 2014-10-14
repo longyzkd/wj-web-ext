@@ -113,7 +113,7 @@ public class ZbxController extends CommonController{
 			String entityName = zbx.getEntityName();
 			String zbxMc = zbx.getZbxMc();
 			String uploadCycle = zbx.getUploadCycle();
-			
+			Long officeId  = zbx.getOfficeId();
 //			Class entityClass = Class.forName(entityName);
 //		    Object obj =  mapper.fromJson(propertyJson, entityClass);
 		    Map<String, Object> map = mapper.fromJson(propertyJson, HashMap.class) ;
@@ -125,6 +125,7 @@ public class ZbxController extends CommonController{
 		    	zbx1.setPropertyText((String)map.get(zbx1.getPropertyName()));
 		    	zbx1.setZbxMc(zbxMc);
 		    	zbx1.setUploadCycle(uploadCycle);
+		    	zbx1.setOfficeId(officeId);
 		    	service.create(zbx1);
 		    }
 			return ExtUtils.mapOK("编辑成功");

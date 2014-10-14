@@ -66,6 +66,31 @@ Ext.define('DEMO.view.zbx.ZbxEdit', {
                         property:'zbxMc'
                        
                     },
+                    {
+               			xtype: 'treepicker',
+               			emptyText: '请选择',
+               			id:'officeId',
+            			fieldLabel: '所属部门',
+            			displayField: 'text',
+            			valueField:'id',
+            			name:'officeId',
+            			minPickerHeight: 200,
+            			rootVisible:false,
+            			store: Ext.create('Ext.data.TreeStore',{
+            				fields: ['id','text'],
+            				root: {
+            					expanded: true
+            				},
+            				proxy: {
+            					type: 'ajax',
+            					url: "sys/user/getAllOfficeNodes",
+            					reader: {
+            						type: 'json'
+            					}
+            				},
+            				autoLoad: false
+            			})
+            		},
 //                    {
 //                    	xtype: 'combo',
 //                    	name : 'entityName',

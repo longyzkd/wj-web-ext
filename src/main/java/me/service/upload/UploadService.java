@@ -2,8 +2,10 @@ package me.service.upload;
 
 import java.util.List;
 
+import me.entity.UploadDocLookup;
 import me.entity.Zbx;
 import me.repository.common.Page;
+import me.repository.lookup.LookupDao;
 import me.repository.upload.UploadDao;
 
 import org.slf4j.Logger;
@@ -19,5 +21,15 @@ public class UploadService {
 	
 	@Autowired
 	private UploadDao dao;
+	@Autowired
+	private LookupDao lookupDap;
+	public List<Zbx> getZbx(String zbxName) {
+		return dao.findZbx(zbxName);
+		
+	}
+
+	public Page<UploadDocLookup> getAllDocs(Page<UploadDocLookup> page, UploadDocLookup doc) {
+		return lookupDap.findDocsUpload(page, doc);
+	}
 	
 }

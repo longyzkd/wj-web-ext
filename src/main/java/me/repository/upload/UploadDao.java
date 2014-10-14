@@ -33,4 +33,17 @@ public class UploadDao extends CommonDao<UploadDocLookup>{
 		return findme(page, hql.toString(),pars);
 	}
 
+	public List<Zbx> findZbx(String zbxName) {
+		Parameter pars = new Parameter();
+		
+		StringBuilder hql = new StringBuilder("from Zbx where 1=1 ");
+		
+		if(!StringUtils.isEmpty(zbxName)){
+			hql.append(" and zbxMc like :p1 ");
+			pars.put("p1",  "%"+zbxName+"%");
+		}
+		hql.append(" group by entityName ");
+		
+		return find(hql.toString(), pars)	;
+	}
 }

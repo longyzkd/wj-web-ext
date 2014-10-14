@@ -20,6 +20,8 @@ Ext.define('DEMO.view.zbx.ZbxList' ,{
                            }
                         },
                         { text: '指标项名称', dataIndex: 'zbxMc', flex: 1 },
+                        { text: '所属部门', dataIndex: 'officeName', flex: 1 },
+//                        { text: '所属部门', dataIndex: 'officeId', flex: 1 },
                         { text: '上传周期', dataIndex: 'uploadCycle', flex: 1 },
                         { text: '表名', dataIndex: 'entityName', flex: 1 },
                         

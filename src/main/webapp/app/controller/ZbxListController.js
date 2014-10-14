@@ -114,13 +114,14 @@ Ext.define('DEMO.controller.ZbxListController', {
 			var zbxMc = Ext.getCmp('zbxMc').getValue();
 			var entityName = Ext.getCmp('entityName').getValue();
 			var uploadCycle = Ext.getCmp('uploadCycle').getValue();
+			var officeId = Ext.getCmp('officeId').getValue();
 		
 	 if(form.isValid( )){
 				 
 		 Ext.Ajax.request({
   			url : 'lookup/zbx/edit',
 //  			params: {propertyJson:fieldSetJson,zbxMc:zbxMc,entityName:entityName,uploadCycle:uploadCycle},
-  			params: Ext.JSON.encode({propertyJson:fieldSetJson,zbxMc:zbxMc,entityName:entityName,uploadCycle:uploadCycle}),
+  			params: Ext.JSON.encode({propertyJson:fieldSetJson,zbxMc:zbxMc,entityName:entityName,uploadCycle:uploadCycle,officeId:officeId}),
   			async : false,//同步执行,为了争取返回exist，必须同步
   			method:'post',
 			headers: {

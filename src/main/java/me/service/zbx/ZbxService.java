@@ -4,6 +4,7 @@ import java.util.List;
 
 import me.entity.Zbx;
 import me.repository.common.Page;
+import me.repository.office.OfficeDao;
 import me.repository.zbx.ZbxDao;
 
 import org.slf4j.Logger;
@@ -20,9 +21,16 @@ public class ZbxService {
 	@Autowired
 	private ZbxDao dao;
 	
+	@Autowired
+	private OfficeDao officeDao;
+	
 	@Transactional(readOnly=true)
 	public Page<Zbx> getList(Page<Zbx> page, Zbx zbx) {
 		Page<Zbx> p = dao.findZbxs(page,zbx);
+		List<Zbx> zbxs = p.getList();
+		for(Zbx z :zbxs){//TODO 后台hql transformer criteria关联查询
+			z.setOfficeName(officeDao.get(z.getOfficeId()).getName());
+		}
 		return p;
 	}
 

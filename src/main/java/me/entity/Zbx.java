@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import me.entity.common.DataEntity;
+import me.utils.Comboable;
 
 
 /**
@@ -20,7 +21,7 @@ import me.entity.common.DataEntity;
  */
 @Entity
 @Table(name = "base_zbx")
-public class Zbx extends DataEntity {
+public class Zbx extends DataEntity implements Comboable{
 	
 	
 	/**
@@ -41,6 +42,7 @@ public class Zbx extends DataEntity {
 	
 	private String propertyJson;
 	
+	private Long officeId;
 	@Transient
 	public String getPropertyJson() {
 		return propertyJson;
@@ -78,6 +80,34 @@ public class Zbx extends DataEntity {
 	public void setPropertyText(String propertyText) {
 		this.propertyText = propertyText;
 	}
+	
+	public Long getOfficeId() {
+		return officeId;
+	}
+	public void setOfficeId(Long officeId) {
+		this.officeId = officeId;
+	}
+	/**
+	 * 指标项名称唯一
+	 */
+	@Transient
+	public String getCode() {
+		return ""+this.zbxMc;
+	}
+	@Transient
+	public String getName() {
+		return this.zbxMc;
+	}
+	
+	private String officeName;
+	@Transient
+	public String getOfficeName() {
+		return officeName;
+	}
+	public void setOfficeName(String officeName) {
+		this.officeName = officeName;
+	}
+	
 	
 	
 }
