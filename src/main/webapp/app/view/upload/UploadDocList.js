@@ -34,7 +34,7 @@ Ext.define('DEMO.view.upload.UploadDocList' ,{
                         		iconCls: 'icon-del',
                         		tooltip: '删除'
                         	},'-',{
-                        		iconCls: 'icon-updatePwd',
+                        		iconCls: 'icon-view',
                         		tooltip: '详情'
                         	}] 
                         }
@@ -58,6 +58,7 @@ Ext.define('DEMO.view.upload.UploadDocList' ,{
     			displayField: 'text',
     			valueField:'id',
     			name:'officeId',
+    			id:'officeId',
     			minPickerHeight: 200,
     			rootVisible:false,
     			store: Ext.create('Ext.data.TreeStore',{
@@ -78,10 +79,12 @@ Ext.define('DEMO.view.upload.UploadDocList' ,{
     		'指标项名称',{
                 xtype    : 'textfield',
                 name     : 'zbxMc',
+                id:'zbxMc',
                 emptyText: '请输入'
             },'-','状态',{
                 xtype    : 'combo',
                 name     : 'status',
+                id     : 'status',
                 emptyText: '请选择',
 		        store:  Ext.create('Ext.data.Store', {
 		        	fields: ['code', 'name'],
@@ -101,12 +104,14 @@ Ext.define('DEMO.view.upload.UploadDocList' ,{
                 xtype: 'datefield',
 //                anchor: '100%',
                 name: 'from_date',
+                id: 'from_date',
                 format :'Y-m-d',
                 maxValue: new Date()  // limited to the current date or prior
             },'至',{
                 xtype: 'datefield',
 //                anchor: '100%',
                 name: 'to_date',
+                id: 'to_date',
                 format :'Y-m-d',
                 value: new Date()  // limited to the current date or prior
             },{

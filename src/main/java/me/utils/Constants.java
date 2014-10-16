@@ -11,6 +11,9 @@ public class Constants {
 	public enum TREE_VIEW{
 		list,node
 	}
+	public enum STATUS{
+		s,f
+	}
 	// 删除标记（0：正常；1：删除；2：审核；）
 	public static final String FIELD_DEL_FLAG = "delFlag";
 	public static final String DEL_FLAG_NORMAL = "0";

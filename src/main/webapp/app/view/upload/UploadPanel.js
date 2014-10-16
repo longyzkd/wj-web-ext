@@ -50,13 +50,13 @@ Ext.define('DEMO.view.upload.UploadPanel' ,{
 			            items: [
 			                {
 			                    boxLabel  : '指标上传',
-			                    name      : 'size',
+			                    name      : 'uploadType',
 			                    inputValue: 'm',
 			                    id        : 'radio1',
 			                    checked   : true
 			                },{
 			                    boxLabel  : '多文件上传',
-			                    name      : 'size',
+			                    name      : 'uploadType',
 			                    inputValue: 'l',
 			                    id        : 'radio2'
 			                }
@@ -86,7 +86,7 @@ Ext.define('DEMO.view.upload.UploadPanel' ,{
 				       
 				    }, {
 				        xtype: 'filefield',
-				        name : 'zbxMc',
+				        name : 'file',
 				        fieldLabel: '选择上传文档',
 				        buttonText: '浏览',
 				        emptyText:'请选择'
@@ -97,6 +97,8 @@ Ext.define('DEMO.view.upload.UploadPanel' ,{
 		                iconCls: 'icon-upload',
 		                itemId: 'upload',
 		                text: '上传',
+		                formBind: true, //only enabled once the form is valid
+		                disabled: true,
 		                action: 'upload'
 				    }]
 			

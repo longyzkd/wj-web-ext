@@ -252,6 +252,56 @@ public class CommonDao<T> {
 	}
 	
 	/**
+	 * 保存实体，不依赖于各模块dao泛型
+	 * @author wj
+	 * @param cur
+	 */
+	public <E> void  saveme(E cur){
+		try {
+			// 获取实体编号
+			Object id = null;
+			for (Method method : cur.getClass().getMethods()){
+				Id idAnn = method.getAnnotation(Id.class);
+				if (idAnn != null){
+					id = method.invoke(cur);
+					break;
+				}
+			}
+			// 插入前执行方法
+//			if (StringUtils.isBlank((String)id)){
+			if (id==null ){	//id为Long
+				for (Method method : cur.getClass().getMethods()){
+					PrePersist pp = method.getAnnotation(PrePersist.class);
+					if (pp != null){
+						method.invoke(cur);
+						break;
+					}
+				}
+			}
+			// 更新前执行方法
+			else{
+				for (Method method : cur.getClass().getMethods()){
+					PreUpdate pu = method.getAnnotation(PreUpdate.class);
+					if (pu != null){
+						method.invoke(cur);
+						break;
+					}
+				}
+			}
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+//		catch (Exception e) { //catch住  不会回滚
+//			e.printStackTrace();
+//		}
+		getSession().saveOrUpdate(cur);
+	
+	}
+	/**
 	 * 保存实体
 	 * @param entity
 	 */

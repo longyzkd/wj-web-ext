@@ -1,7 +1,13 @@
 package me.repository.upload;
 
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
+
+import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
 import me.entity.UploadDocLookup;
 import me.entity.Zbx;
@@ -46,4 +52,6 @@ public class UploadDao extends CommonDao<UploadDocLookup>{
 		
 		return find(hql.toString(), pars)	;
 	}
+	
+	
 }

@@ -24,7 +24,8 @@
 	<logger name="org.springframework" level="ERROR"/>
 	<logger name="org.apache.shiro" level="ERROR"/>
 <!-- 	<logger name="org.hibernate.search.impl.ConfigContext" level="ERROR"/> -->
-	<logger name="me" level="INFO"/>
+	<logger name="me" level="DEBUG"/>
+<!-- 	<logger name="me" level="INFO"/> -->
 
 
 	<root level="WARN">

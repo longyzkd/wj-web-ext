@@ -13,7 +13,13 @@
 	default-lazy-init="true">
 
 	<description>Spring公共配置 </description>
-
+	
+ 	<!-- Configure the multipart resolver -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <property name="maxUploadSize" value="100000"/>
+    </bean>
+    
 	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
 	<context:component-scan base-package="me">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>

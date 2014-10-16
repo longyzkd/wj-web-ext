@@ -15,6 +15,7 @@ import javax.persistence.Transient;
 import me.entity.common.IdEntity;
 import me.utils.DateUtils;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -104,9 +105,9 @@ public class UploadDocLookup extends IdEntity {
 	@Transient
 //	@DateTimeFormat(pattern="yyyy-MM-dd")  
 	public String getTo() {
-		if(null==to){
-			return (DateUtils.getDate("yyyy-MM-dd")) ;
-		}
+//		if(StringUtils.isEmpty(to)){
+//			return (DateUtils.getDate("yyyy-MM-dd")) ;
+//		}
 		return to;
 	}
 	public void setTo(String to) {

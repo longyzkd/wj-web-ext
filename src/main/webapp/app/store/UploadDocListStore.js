@@ -32,9 +32,9 @@ Ext.define('DEMO.store.UploadDocListStore', {
 		// sortParam: "sort",
 		//directionParam: "dir"
 		//    simpleSortMode	: true,
-		extraParams : {//用来排序,sql用法
-			orderBy : 'zbxMc'
-		},
+//		extraParams : {//用来排序,sql用法
+//			orderBy : 'zbxMc'
+//		},
 		listeners : {
 			exception : function(proxy, response, operation) {
 				Ext.MessageBox.show({
@@ -44,8 +44,28 @@ Ext.define('DEMO.store.UploadDocListStore', {
 					buttons : Ext.Msg.OK
 				});
 			}
+			
 		}
 
+	},
+	listeners:{
+		beforeload:function(store, operation, eOpts){//保持分页参数
+			var officeId = Ext.getCmp('officeId')?Ext.getCmp('officeId').getValue():'';
+	    	var zbxMc = Ext.getCmp('zbxMc')? Ext.getCmp('zbxMc').getValue():'';
+	    	var status = Ext.getCmp('status')?Ext.getCmp('status').getValue():'';
+	    	var from = Ext.getCmp('from_date')?Ext.getCmp('from_date').getValue():'';
+	    	var to = Ext.getCmp('to_date')?Ext.getCmp('to_date').getValue():'';
+			store.proxy.extraParams={
+					orderBy:'zbxMc',
+					
+					officeId:officeId,
+	    			zbxMc: zbxMc,
+	    			status:status,
+	    			from:Ext.Date.format(from,'Y-m-d '),
+	    			to:Ext.Date.format(to,'Y-m-d ')
+	    			
+	    		}
+		}
 	}
 
 

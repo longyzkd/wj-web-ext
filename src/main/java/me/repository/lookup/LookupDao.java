@@ -40,15 +40,14 @@ public class LookupDao extends CommonDao<UploadDocLookup> {
 		
 		//起始 截止时间比较
 		if (!StringUtils.isBlank(doc.getFrom())) {
-			 
-			if (!StringUtils.isBlank(doc.getTo())) {
-				detachedCriteria.add(Restrictions.between("createDate", DateUtils.parseDate(doc.getFrom()), DateUtils.parseDate(doc.getTo())));
+			if (!StringUtils.isBlank(doc.getTo())) {//页面日期今天的最后一分
+				detachedCriteria.add(Restrictions.between("createDate", DateUtils.getDateEnd(doc.getFrom()), DateUtils.getDateEnd(doc.getTo())));
 			}else{
-				detachedCriteria.add(Restrictions.ge("createDate", DateUtils.parseDate(doc.getFrom())));
+				detachedCriteria.add(Restrictions.ge("createDate", DateUtils.getDateEnd(doc.getFrom())));
 			}
 		}else{
 			if (!StringUtils.isBlank(doc.getTo())) {
-				detachedCriteria.add(Restrictions.le("createDate", DateUtils.parseDate(doc.getTo())));
+				detachedCriteria.add(Restrictions.le("createDate", DateUtils.getDateEnd(doc.getTo())));
 			}
 		}
 		return find(page, detachedCriteria);

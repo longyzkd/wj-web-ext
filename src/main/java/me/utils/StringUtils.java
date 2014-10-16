@@ -14,4 +14,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils{
 			return "["+s+"]";
 		}
 	}
+	public  static String endDay(String s){
+		return s+"24:59:59";
+	}
 }

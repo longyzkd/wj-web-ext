@@ -79,5 +79,11 @@ public class ZbxDao extends CommonDao<Zbx>{
 		detachedCriteria.add(Restrictions.eq("entityName",entityName));
 		return find(detachedCriteria);
 	}
+	public List<Zbx> findZbxListBy(String zbxMc) {
+		DetachedCriteria  detachedCriteria =createDetachedCriteria()  ;
+		Assert.hasText(zbxMc);
+		detachedCriteria.add(Restrictions.eq("zbxMc",zbxMc));
+		return find(detachedCriteria);
+	}
 
 }

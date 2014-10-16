@@ -22,12 +22,20 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 		"yyyy/MM/dd", "yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd HH:mm" };
 
 	/**
-	 * 得到当前日期字符串 格式（yyyy-MM-dd）
+	 * 得到当前日期字符串 格式（yyyy-MM-dd HH:mm:ss）
 	 */
 	public static String getDate() {
 		return getDate("yyyy-MM-dd HH:mm:ss");
 	}
-	
+	/**
+	 * 得到当前日期 格式（yyyy-MM-dd HH:mm:ss）
+	 */
+	public static Date getDate_() {
+		return DateUtils.parseDate(getDate("yyyy-MM-dd HH:mm:ss"))  ;
+	}
+	public static Date getDate_(String pattern) {
+		return DateUtils.parseDate(getDate(pattern))  ;
+	}
 	/**
 	 * 得到当前日期字符串 格式（yyyy-MM-dd） pattern可以为："yyyy-MM-dd" "HH:mm:ss" "E"
 	 */
@@ -148,6 +156,17 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 			e.printStackTrace();
 		}
 		return date;
+	}
+	/**
+	 * 今天的最后一刻
+	 * @param date
+	 * @return
+	 */
+	public static Date getDateEnd(String date) {
+		if(date==null) {
+			return null;
+		}
+		return parseDate(date +" 23:59:59");
 	}
 	
 	/**

@@ -2,16 +2,27 @@ package me.entity.data.fgj;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 
 import me.entity.common.DataEntity;
+import me.utils.excel.Uploadable;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * 房管局网上合同备案表
  * @author wj
  *
  */
-public class Wshtba extends DataEntity{
+@Entity
+@Table(name = "data_fgj_wshtba")
+public class Wshtba extends DataEntity implements Uploadable{
 
 	/**
 	 * 
@@ -75,7 +86,7 @@ public class Wshtba extends DataEntity{
 	/**
 	 * 填报日期
 	 */
-	private String tbDate;
+	private Date tbDate;
 	
 	/**
 	 * 文档名称
@@ -85,6 +96,17 @@ public class Wshtba extends DataEntity{
 	private Long uploadId;
 	
 	
+	private String title;
+	
+
+	@NotBlank
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
 	public Long getUploadId() {
 		return uploadId;
@@ -94,6 +116,8 @@ public class Wshtba extends DataEntity{
 		this.uploadId = uploadId;
 	}
 
+	@NotNull
+	@Digits(fraction=1,integer=10000)
 	public Long getXh() {
 		return xh;
 	}
@@ -101,7 +125,7 @@ public class Wshtba extends DataEntity{
 	public void setXh(Long xh) {
 		this.xh = xh;
 	}
-
+	@NotBlank
 	public String getQymc() {
 		return qymc;
 	}
@@ -109,7 +133,7 @@ public class Wshtba extends DataEntity{
 	public void setQymc(String qymc) {
 		this.qymc = qymc;
 	}
-
+	@NotBlank
 	public String getZzjgdm() {
 		return zzjgdm;
 	}
@@ -117,7 +141,7 @@ public class Wshtba extends DataEntity{
 	public void setZzjgdm(String zzjgdm) {
 		this.zzjgdm = zzjgdm;
 	}
-
+	@NotBlank
 	public String getGszch() {
 		return gszch;
 	}
@@ -125,15 +149,14 @@ public class Wshtba extends DataEntity{
 	public void setGszch(String gszch) {
 		this.gszch = gszch;
 	}
-
+	@NotBlank
 	public String getSh() {
 		return sh;
 	}
-
 	public void setSh(String sh) {
 		this.sh = sh;
 	}
-
+	@NotBlank
 	public String getXmmc() {
 		return xmmc;
 	}
@@ -142,6 +165,7 @@ public class Wshtba extends DataEntity{
 		this.xmmc = xmmc;
 	}
 
+//	@DecimalMin("1")
 	public Double getJzmj() {
 		return jzmj;
 	}
@@ -149,7 +173,7 @@ public class Wshtba extends DataEntity{
 	public void setJzmj(Double jzmj) {
 		this.jzmj = jzmj;
 	}
-
+//	@DecimalMin("1")
 	public Double getHtje() {
 		return htje;
 	}
@@ -181,12 +205,12 @@ public class Wshtba extends DataEntity{
 	public void setTbDw(String tbDw) {
 		this.tbDw = tbDw;
 	}
-
-	public String getTbDate() {
+	@JsonFormat(pattern = "yyyy-MM-dd ", timezone = "GMT+08:00")
+	public Date getTbDate() {
 		return tbDate;
 	}
 
-	public void setTbDate(String tbDate) {
+	public void setTbDate(Date tbDate) {
 		this.tbDate = tbDate;
 	}
 

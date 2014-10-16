@@ -58,6 +58,10 @@ public abstract class CommonController {
 		ShiroUser user = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
 		return user.id;
 	}
+	protected ShiroUser getCurrentUser() {
+		ShiroUser user = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
+		return user;
+	}
 //	public int getPageSize(){
 //		return ExtJSReturn.Integer.valueOf(Global.getConfig("page.pageSize"));
 //	}
