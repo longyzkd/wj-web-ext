@@ -862,4 +862,15 @@ public class CommonDao<T> {
 	// -------------- Hibernate search --------------
 	
 	
+	// --------------  --------------
+	/**
+	 * 执行hql
+	 * @param string
+	 * @param parameter
+	 */
+	public void executeUpdate(String string, Parameter parameter) {
+		createQuery(string,parameter).executeUpdate();
+		
+	}
+	
 }

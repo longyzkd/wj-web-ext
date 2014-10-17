@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
+import me.entity.Office;
 import me.entity.UploadDocLookup;
 import me.entity.Zbx;
 import me.repository.common.CommonDao;
@@ -39,7 +40,7 @@ public class UploadDao extends CommonDao<UploadDocLookup>{
 		return findme(page, hql.toString(),pars);
 	}
 
-	public List<Zbx> findZbx(String zbxName) {
+	public List<Zbx> findZbxs(String zbxName) {
 		Parameter pars = new Parameter();
 		
 		StringBuilder hql = new StringBuilder("from Zbx where 1=1 ");
@@ -52,6 +53,22 @@ public class UploadDao extends CommonDao<UploadDocLookup>{
 		
 		return find(hql.toString(), pars)	;
 	}
+	public Zbx findZbx(String zbxMc) {
+		Assert.hasText(zbxMc);
+		
+		StringBuilder hql = new StringBuilder("from Zbx where 1=1  and zbxMc = :p1  group by entityName ");
+		
+		return (Zbx)find(hql.toString(), new Parameter(zbxMc)).get(0)	;
+	}
+
+	public void delData(UploadDocLookup upload, String entityName) {
+//		DetachedCriteria  detachedCriteria =  DetachedCriteria.forClass(dataClazz);
+//		detachedCriteria.add(Restrictions.eq("uploadId",upload.getId()));
+		
+		executeUpdate("delete from "+ entityName +" where uploadId = :p1 " ,new Parameter(upload.getId()));
+	}
+
+	
 	
 	
 }

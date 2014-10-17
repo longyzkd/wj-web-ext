@@ -10,6 +10,7 @@ import java.util.List;
 import javax.validation.ConstraintViolationException;
 
 import me.entity.UploadDocLookup;
+import me.entity.User;
 import me.entity.Zbx;
 import me.entity.data.fgj.Wshtba;
 import me.repository.common.Page;
@@ -19,6 +20,7 @@ import me.utils.Constants;
 import me.utils.DateUtils;
 import me.utils.ExtUtils;
 import me.utils.FileUploadBean;
+import me.utils.StringUtils;
 import me.utils.excel.ImportExcelme;
 import me.utils.excel.Uploadable;
 import me.web.CommonController;
@@ -30,6 +32,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,6 +41,7 @@ import org.springside.modules.mapper.JsonMapper;
 import org.springside.modules.utils.Reflections;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.JavaType;
 
 
 /**
@@ -82,7 +86,7 @@ public class UploadController extends CommonController{
 	public @ResponseBody  Object getZbx(String zbxName) {
 
 //		page = service.getUsers(page,user);
-		List<Zbx> data = service.getZbx(zbxName);
+		List<Zbx> data = service.getZbxs(zbxName);
 		
 		return ExtUtils.toMap(ExtUtils.toCombo(data));
 	}
@@ -143,6 +147,24 @@ public class UploadController extends CommonController{
 		upload.setCreateDate(DateUtils.getDate_());
 		upload.setStatus(Constants.STATUS.s.toString());
 		return upload;
+	}
+	
+	
+	@RequestMapping(value="delete",method = RequestMethod.POST)
+	public @ResponseBody Object delete(@RequestBody String json)  {
+		try{
+			
+			UploadDocLookup upload = mapper.fromJson(json,UploadDocLookup.class);
+			String zbxMc = upload.getZbxMc();
+			Zbx zbx = service.getZbx(zbxMc);
+			service.del(upload,zbx.getEntityName());
+			return ExtUtils.mapOK("刪除成功");
+//			throw new Exception();
+
+		} catch (Exception e) {//TODO 做成过滤器
+			logger.error(e.getMessage());
+			return ExtUtils.mapError("系统错误");
+		}
 	}
 	
 }

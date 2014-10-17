@@ -70,28 +70,13 @@ Ext.define('DEMO.controller.UploadController', {
      }
    },
    query:function( e, eOpts){
-//    	var officeId = e.up('toolbar').down('[name=officeId]').getValue();
-//    	var zbxMc = e.up('toolbar').down('[name=zbxMc]').getValue();
-//    	var status = e.up('toolbar').down('[name=status]').getValue();
-//    	var from = e.up('toolbar').down('[name=from_date]').getValue();
-//    	console.log();
-//    	var to = e.up('toolbar').down('[name=to_date]').getValue();
-//    	this.getUploadDocListStoreStore().load({
-//    		params:{
-//    			officeId:officeId,
-//    			zbxMc: zbxMc,
-//    			status:status,
-//    			from:Ext.Date.format(from,'Y-m-d'),
-//    			to:Ext.Date.format(to,'Y-m-d')
-//    		} 
-//    	});
 	   this.getUploadDocListStoreStore().load();
     },
     onAction: function(view,cell,row,col,e){
         var m = e.getTarget().className.match(/\bicon-(\w+)\b/)
         if(m){
             //选择该列
-            this.getUserList().getView().getSelectionModel().select(row,false)
+            this.getUploadDocList().getView().getSelectionModel().select(row,false)
             switch(m[1]){
                 case 'edit':
                 	var record = this.getUserListStoreStore().getAt(row);
@@ -105,12 +90,35 @@ Ext.define('DEMO.controller.UploadController', {
                 	}
                     break;
                 case 'del':
-                	var record = this.getUserListStoreStore().getAt(row);
-                	var editWin = Ext.widget('PwdEdit').show();
-                	editWin.setTitle('修改密码');
-                	if(record){
-                		editWin.down('form').loadRecord(record);
-                	}
+                	var store = this.getUploadDocListStoreStore(),
+                	   record = store.getAt(row);
+                	store.remove(record);
+	           		store.sync({
+	                        success: function(batch) {
+	                       	 Ext.MessageBox.show({
+	                                title: '提示',
+	                                msg: Ext.decode(batch.operations[0].response.responseText).message,
+	                                icon: Ext.MessageBox.INFO,
+	                                buttons: Ext.Msg.OK,
+	                                fn: function(buttonId) {
+	                                    if (buttonId === "ok") {
+	                                   	 store.reload();
+	                                    }
+	                                }
+	                            });
+	                   		 
+	                        },
+	       	             failure: function(batch){
+	                               Ext.MessageBox.show({
+	       	                         title: "错误",
+	       	                         msg:Ext.decode(batch.operations[0].response.responseText).message,
+	       	                         icon: Ext.MessageBox.ERROR,
+	       	                         buttons: Ext.MessageBox.OK
+	                               });  
+	       	
+	       	             }
+	           		 });
+           		 
                     break;
                 case 'view':
                 	var record = this.getUserListStoreStore().getAt(row);

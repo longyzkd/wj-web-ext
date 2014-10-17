@@ -31,7 +31,12 @@ public class UploadService {
 	private LookupDao lookupDao;
 	@Autowired
 	private ZbxDao zbxDao;
-	public List<Zbx> getZbx(String zbxName) {
+	public List<Zbx> getZbxs(String zbxName) {
+		return dao.findZbxs(zbxName);
+		
+	}
+	
+	public Zbx getZbx(String zbxName) {
 		return dao.findZbx(zbxName);
 		
 	}
@@ -61,6 +66,17 @@ public class UploadService {
 
 	public List<Zbx> getZbxList(String zbxMc) {
 		return zbxDao.findZbxListBy(zbxMc);
+	}
+
+	/**
+	 * 删除 upload 以及相应的data
+	 * @param upload
+	 * @param entityName
+	 */
+	public void del(UploadDocLookup upload,String entityName) {
+		dao.delete(upload);
+		dao.delData(upload,entityName);
+		
 	}
 	
 }
