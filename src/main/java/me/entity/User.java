@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class User extends DataEntity {
 	
 	
-	private String loginName;
+	private String loginName;    
 	
 	private String name;
 	
