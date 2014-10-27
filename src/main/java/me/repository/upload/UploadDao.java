@@ -67,6 +67,14 @@ public class UploadDao extends CommonDao<UploadDocLookup>{
 		
 		executeUpdate("delete from "+ entityName +" where uploadId = :p1 " ,new Parameter(upload.getId()));
 	}
+	public Page<Object> findData(Page<Object> page,UploadDocLookup upload, String entityName) {
+//		DetachedCriteria  detachedCriteria =  DetachedCriteria.forClass(dataClazz);
+//		detachedCriteria.add(Restrictions.eq("uploadId",upload.getId()));
+		
+		String hql = " from "+ entityName +" where uploadId = :p1 " ;
+		return find(page, hql, new Parameter(upload.getId()));
+	}
+	
 
 	
 	

@@ -5,7 +5,7 @@ Ext.define('DEMO.controller.UploadController', {
     models	: ['UploadDocLookupModel'],
 
     views	: [
-		'upload.UploadDocList','upload.UploadPanel'
+		'upload.UploadDocList','upload.UploadPanel','upload.DocView'
     ],
     refs: [{
 	        ref: 'UploadDocList',
@@ -121,11 +121,20 @@ Ext.define('DEMO.controller.UploadController', {
            		 
                     break;
                 case 'view':
-                	var record = this.getUserListStoreStore().getAt(row);
-                	var editWin = Ext.widget('PwdEdit').show();
-                	editWin.setTitle('修改密码');
+                	var record = this.getUploadDocListStoreStore().getAt(row);
+                	var editWin = Ext.widget('DocView').show();
+                	editWin.setTitle('文档详情');
                 	if(record){
-                		editWin.down('form').loadRecord(record);
+                		var dynamicStore = Ext.data.StoreManager.lookup('dynamicStore');
+                		dynamicStore.load();
+//                		dynamicStore.load({
+//                			params:{
+//                				id : record.get('id'),
+//                				zbxMc : record.get('zbxMc')
+//                			} 
+//                		});
+//                		dynamicStore.proxy.extraParams={upload : Ext.encode(record.getData())};
+//                		dynamicStore.loadPage(1);
                 	}
                     break;
                default:

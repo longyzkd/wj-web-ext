@@ -47,7 +47,7 @@ import com.google.common.collect.Lists;
  * Update action : POST /task/update
  * Delete action : GET /task/delete/{id}
  * 
- * @author calvin
+ * @author wj
  */
 @Controller
 @RequestMapping(value = "/lookup/zbx")

@@ -181,7 +181,7 @@ public class Wshtba extends DataEntity implements Uploadable{
 	public void setHtje(Double htje) {
 		this.htje = htje;
 	}
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
+	@JsonFormat(pattern = "yyyy-MM-dd ", timezone = "GMT+08:00")//set时候没用？
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -189,7 +189,7 @@ public class Wshtba extends DataEntity implements Uploadable{
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
+	@JsonFormat(pattern = "yyyy-MM-dd ", timezone = "GMT+08:00")
 	public Date getEndDate() {
 		return endDate;
 	}

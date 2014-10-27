@@ -6,6 +6,7 @@
 package me.web.upload;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.ConstraintViolationException;
 
@@ -54,7 +55,7 @@ import com.fasterxml.jackson.databind.JavaType;
  * Update action : POST /task/update
  * Delete action : GET /task/delete/{id}
  * 
- * @author calvin
+ * @author wj
  */
 @Controller
 @RequestMapping(value = "/upload")
@@ -162,6 +163,31 @@ public class UploadController extends CommonController{
 //			throw new Exception();
 
 		} catch (Exception e) {//TODO 做成过滤器
+			logger.error(e.getMessage());
+			return ExtUtils.mapError("系统错误");
+		}
+	}
+	
+	/**
+	 * 动态grid
+	 * @param page
+	 * @param upload
+	 * @return
+	 */
+	@RequestMapping(value="view",method = RequestMethod.POST)
+//	@RequestMapping(value="view",method = RequestMethod.GET)
+	public @ResponseBody Object view( Page<Object> page,   UploadDocLookup upload)  {
+//		public @ResponseBody Object view(Page<Object> page,  @RequestBody String upload)  {
+		try{
+			Map<String,Object> map = service.view(page, upload);
+			return map;
+//			JavaType beanListType = mapper.contructCollectionType(List.class, UploadDocLookup.class);
+//			
+//			String s = "%7B%22id%22%3A2%2C%22zbxMc%22%3A%22%5Cu623f%5Cu4ea7%5Cu4ea4%5Cu6613%5Cu660e%5Cu7ec6%22%2C%22wdMc%22%3A%22fcjymx_141011.xlsx%22%2C%22createBy%22%3A%22wj%22%2C%22createDate%22%3A%222014-10-11+17%3A36%3A15%22%2C%22status%22%3A%22s%22%2C%22officeId%22%3A2%7D";
+//			List<UploadDocLookup> beanList = mapper.fromJson(StringUtils.wrap(s), beanListType);
+
+		} catch (Exception e) {//TODO 做成过滤器
+			e.printStackTrace();
 			logger.error(e.getMessage());
 			return ExtUtils.mapError("系统错误");
 		}
